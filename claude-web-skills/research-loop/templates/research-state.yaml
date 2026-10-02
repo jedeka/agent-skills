@@ -1,0 +1,14 @@
+# Live project state. On resume: read this FIRST, continue from next_action. Update after every pass.
+question: ""             # the sharpened research question, one sentence
+status: bootstrap        # bootstrap | inner | outer | finalize | done
+next_action: ""          # the single concrete next step, imperative
+budget:
+  per_hypothesis: ""     # e.g. "3 experiments or 2 hours" (honest-iteration's stopping rule)
+  total: ""              # the overall cap set at the door
+hypotheses:
+  - id: H1
+    statement: ""        # falsifiable, one sentence
+    status: open         # open | testing | supported | killed | pivoted
+    verdict: ""          # one line: what the evidence said
+    spent: ""            # budget consumed so far
+session_notes: ""        # anything the next session must know that fits nowhere else
