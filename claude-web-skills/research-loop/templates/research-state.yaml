@@ -1,14 +1,20 @@
-# Live project state. On resume: read this FIRST, continue from next_action. Update after every pass.
-question: ""             # the sharpened research question, one sentence
-status: bootstrap        # bootstrap | inner | outer | finalize | done
-next_action: ""          # the single concrete next step, imperative
+# Live project state. On resume: read this FIRST, continue from next_action. Overwrite after every pass.
+question: ""               # the sharpened research question, one sentence
+status: bootstrap          # bootstrap | inner | outer | finalize | done
+next_action: ""            # the single concrete next step, imperative
+passes_since_outer: 0      # inner passes since the last outer loop; run the outer loop at 5-10
+last_outer: ""             # YYYY-MM-DD of the last merge into findings.md
 budget:
-  per_hypothesis: ""     # e.g. "3 experiments or 2 hours" (honest-iteration's stopping rule)
-  total: ""              # the overall cap set at the door
+  per_hypothesis: ""       # e.g. "3 probes and 1 experiment" or "2 hours"
+  total: ""                # the overall cap set at the door
 hypotheses:
   - id: H1
-    statement: ""        # falsifiable, one sentence
-    status: open         # open | testing | supported | killed | pivoted
-    verdict: ""          # one line: what the evidence said
-    spent: ""            # budget consumed so far
-session_notes: ""        # anything the next session must know that fits nowhere else
+    statement: ""          # falsifiable, one sentence
+    speed: probe           # probe | test; moves to test only on honest-iteration's graduate verdict
+    status: open           # open | probing | testing | supported | killed | pivoted
+    probe: ""              # probes/<slug>/ once a probe exists
+    experiment: ""         # experiments/<slug>/ once a protocol.md exists
+    claims: []             # record ids in findings.md that bear on this hypothesis, e.g. [C3, C7]
+    verdict: ""            # one line: what the evidence said
+    spent: ""              # budget consumed so far
+session_notes: ""          # anything the next session must know that fits nowhere else
