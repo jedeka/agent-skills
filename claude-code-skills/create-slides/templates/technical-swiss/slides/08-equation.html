@@ -1,0 +1,47 @@
+<!--
+  08 equation (design spec §12).
+  Use: one major equation, or a small coherent group (≤ 3 lines), that the slide is about.
+  Grid: .c8 equation panel, reading and an amber-ruled condition (drop it if the equation holds
+    unconditionally) + .c4 symbol definitions, each symbol in a fixed 56 px slot.
+  Capacity (864 px content height): equation lines ≤ 2 at 48 px mono (3 when the condition
+    is dropped), ≤ 36 characters each
+    (the panel's inner width is 1059 px; ~29 px per mono character); reading ≤ 3 lines at 38 px
+    (≤ 150 characters); condition ≤ 2 lines at 32 px; ≤ 4 symbols with a meaning of ≤ 2 lines at
+    32 px (~25 characters per line), or ≤ 6 with 1 line.
+    Flow ≈ head 113 + 40 + max(left 528, right 520) = 681 of 864.
+  Defaults: write simple equations in Unicode mono (θ, λ, ≤, Σ, x̂); for stacked fractions, roots
+    or accents use `<div class="math-display">TeX</div>` (typeset at build time by
+    scripts/mathsvg.py, needs matplotlib); never shrink below 48 px. In TeX, each <p class="eq">
+    becomes <div class="math-display">k = \lceil (n+1)(1-\alpha) \rceil</div> (48 px, ≤ 3 lines
+    when the condition is dropped). Characters do not measure TeX: a line must fit the panel's
+    1059 px inner width, and deck.py check reports one that does not. A TeX symbol replaces its
+    mono span: <span class="math" style="width:56px;flex:none">\hat{q}</span>. Inside .mono
+    (0.9 em) the formula renders 10 % smaller than its meaning, and no check reports that.
+-->
+<section>
+  <div class="head" data-role="heading" data-cap="kicker ≤ 30 chars · title 1 line, ≤ 50 chars">
+    <p class="kicker">[Section label · ≤&nbsp;30 characters]</p>
+    <h2>[Slide title: what the equation decides, ≤&nbsp;50 characters]</h2>
+  </div>
+  <div class="row">
+    <div class="c8 stack">
+      <div class="panel stack" style="padding:48px" data-role="equations" data-cap="≤ 2 lines at 48 px mono, ≤ 36 chars each">
+        <p class="eq">[Equation, ≤&nbsp;36 mono characters]</p>
+        <p class="eq">[Second line, optional, ≤&nbsp;36]</p>
+      </div>
+      <p data-role="reading" data-cap="≤ 3 lines, ≤ 150 chars">[Reading: what the equation says in words and what it implies, ≤&nbsp;3 lines, ≤&nbsp;150 characters]</p>
+      <div class="rule-amber" data-role="condition" data-cap="≤ 2 lines at 32 px, ≤ 120 chars"><p class="s">[Condition: the assumption under which it holds, ≤&nbsp;2 lines, ≤&nbsp;120 characters]</p></div>
+    </div>
+    <div class="c4 stack">
+      <p class="kicker">Where</p>
+      <ul class="plain" data-role="symbols" data-cap="≤ 4 with meanings of ≤ 2 lines, ≤ 45 chars; ≤ 6 with 1 line">
+        <li class="s row" style="gap:16px;align-items:baseline"><span class="mono" style="width:56px;flex:none">[x]</span><span>[Meaning of the symbol, ≤&nbsp;2 lines, ≤&nbsp;45 characters]</span></li>
+        <li class="s row" style="gap:16px;align-items:baseline"><span class="mono" style="width:56px;flex:none">[θ]</span><span>[Meaning of the symbol, ≤&nbsp;2 lines, ≤&nbsp;45 characters]</span></li>
+        <li class="s row" style="gap:16px;align-items:baseline"><span class="mono" style="width:56px;flex:none">[λ]</span><span>[Meaning of the symbol, ≤&nbsp;2 lines, ≤&nbsp;45 characters]</span></li>
+        <li class="s row" style="gap:16px;align-items:baseline"><span class="mono" style="width:56px;flex:none">[α]</span><span>[Meaning of the symbol, ≤&nbsp;2 lines, ≤&nbsp;45 characters]</span></li>
+      </ul>
+      <p class="meta" data-role="source" data-cap="paper and equation number">[Source: paper and equation number, or derivation]</p>
+    </div>
+  </div>
+  <aside class="notes">[Speaker notes, optional: read the equation aloud once, ≤&nbsp;80 words]</aside>
+</section>

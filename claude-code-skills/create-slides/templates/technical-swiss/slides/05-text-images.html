@@ -1,0 +1,36 @@
+<!--
+  05 text + images (design spec §9).
+  Use: a short explanation next to one coherent pair of images (two views, before / after, the
+    setup and a detail). For a side-by-side comparison of 3 conditions use 11-image-compare.
+  Grid: .c4 text + .c8 image region holding two .c4 images (4:3 at 565 x 424). For one image,
+    give it the whole .c8 at 16:9 (1155 x 650) and drop the captions to one line.
+  Capacity (864 px content height): lead ≤ 4 lines at 38 px (~27 characters per line,
+    ≤ 100 characters); ≤ 3 bullets of ≤ 2 lines at 32 px (≤ 55 characters each); captions
+    ≤ 2 lines (≤ 60 characters). Flow ≈ head 113 + 40 + max(text 568, images 512) = 721 of 864.
+  Defaults: equal image sizes, edges on the grid, no frames; captions sit directly under each image.
+-->
+<section>
+  <div class="head" data-role="heading" data-cap="kicker ≤ 30 chars · title 1 line, ≤ 50 chars">
+    <p class="kicker">[Section label · ≤&nbsp;30 characters]</p>
+    <h2>[Slide title: the finding, one line, ≤&nbsp;50 characters]</h2>
+  </div>
+  <div class="row">
+    <div class="c4 stack">
+      <p data-role="lead" data-cap="≤ 4 lines, ≤ 100 chars">[Lead: what the images show and why, ≤&nbsp;4 lines, ≤&nbsp;100&nbsp;characters]</p>
+      <ul class="dash" data-role="points" data-cap="≤ 3 bullets of ≤ 2 lines at 32 px, ≤ 55 chars each">
+        <li class="s">[Point: what to notice, ≤&nbsp;2 lines, ≤&nbsp;55 characters]</li>
+        <li class="s">[Point: what to notice, ≤&nbsp;2 lines, ≤&nbsp;55 characters]</li>
+        <li class="s">[Point: what to notice, ≤&nbsp;2 lines, ≤&nbsp;55 characters]</li>
+      </ul>
+    </div>
+    <div class="c4 fig">
+      <img data-role="image" data-cap="4:3 at 565 × 424" src="assets/placeholder-photo-a.png" alt="[Image A]" style="width:565px;height:424px">
+      <p class="cap" data-role="caption" data-cap="≤ 2 lines, ≤ 60 chars">[Caption A: view or condition, ≤&nbsp;2 lines, ≤&nbsp;60 characters]</p>
+    </div>
+    <div class="c4 fig">
+      <img data-role="image" data-cap="4:3 at 565 × 424" src="assets/placeholder-photo-b.png" alt="[Image B]" style="width:565px;height:424px">
+      <p class="cap" data-role="caption" data-cap="≤ 2 lines, ≤ 60 chars">[Caption B: view or condition, ≤&nbsp;2 lines, ≤&nbsp;60 characters]</p>
+    </div>
+  </div>
+  <aside class="notes">[Speaker notes, optional: ≤&nbsp;80 words]</aside>
+</section>

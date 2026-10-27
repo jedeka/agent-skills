@@ -1,0 +1,16 @@
+<section>
+  <div class="head"><p class="kicker">02 · Camera sets</p><h2>Seven camera sets, blocked in software</h2></div>
+  <table>
+    <tr><th style="width:20%">cameras</th><th style="width:10%">blocked</th><th style="width:70%">what the model sees</th></tr>
+    <tr><td>top + left + right</td><td>0</td><td>everything the fixed cameras see</td></tr>
+    <tr><td>top + left</td><td>1</td><td>top view and one side view</td></tr>
+    <tr><td>top + right</td><td>1</td><td>top view and the other side view</td></tr>
+    <tr><td>left + right</td><td>1</td><td>both side views, no top view</td></tr>
+    <tr class="bad"><td class="lab">top only</td><td>2</td><td>colour and position; big and small look alike from above, and one box's top carries a sticker</td></tr>
+    <tr><td>left only</td><td>2</td><td>one side view: colour and size</td></tr>
+    <tr><td>right only</td><td>2</td><td>the other side view: colour and size</td></tr>
+    <tr><td>none</td><td>3</td><td>no image: handled by rule (all four boxes, then look), not run</td></tr>
+  </table>
+  <p class="cap">Blocking a camera means leaving its image out of the prompt. Every scene appears in all seven sets.</p>
+  <aside class="notes">Source: 80-run-unique-scenario.md §2. The no-camera case is a rule of the decision policy, not a measured condition.</aside>
+</section>

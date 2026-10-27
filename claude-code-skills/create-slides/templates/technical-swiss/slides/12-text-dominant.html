@@ -1,0 +1,39 @@
+<!--
+  12 text-dominant (design spec §16).
+  Use: an argument with no visual: three substantial statements, each with its support.
+  Grid: three .c4 units on 2 px rules; two units take .c6 each.
+  Capacity (864 px content height): lead 1 line (≤ 80 characters); per unit a label, a
+    statement ≤ 3 lines at 38 px (~27 characters per line, ≤ 75 characters) support
+    ≤ 5 lines at 32 px (~32 characters per line, ≤ 150 characters) and an optional evidence line
+    of ≤ 2 lines at 28 px, pinned to the unit's bottom so the three align. Flow ≈ head 174 + 40 + unit 544 = 758 of 864.
+  Defaults: a few substantial statements, not many fragments; accent only the one key term per
+    unit that carries a fixed colour meaning; never a paragraph wider than a unit.
+-->
+<section>
+  <div class="head" data-role="heading" data-cap="kicker ≤ 30 chars · title 1 line, ≤ 50 chars · lead 1 line, ≤ 80 chars">
+    <p class="kicker">[Section label · ≤&nbsp;30 characters]</p>
+    <h2>[Slide title: the argument, one line, ≤&nbsp;50 characters]</h2>
+    <p class="lead">[Lead: the frame that ties the three units together, one line, ≤&nbsp;80 characters]</p>
+  </div>
+  <div class="row stretch">
+    <div class="c4 head rule2" data-role="unit" data-cap="statement ≤ 3 lines, ≤ 75 chars; support ≤ 5 lines, ≤ 150 chars; evidence ≤ 2 lines, ≤ 70 chars">
+      <p class="kicker">[01 · Label]</p>
+      <p><strong>[Statement: one claim, ≤&nbsp;3 lines, ≤&nbsp;75 characters]</strong></p>
+      <p class="s sec">[Support: the mechanism, evidence or example, ≤&nbsp;5 lines, ≤&nbsp;150 characters]</p>
+      <p class="cap rule" style="margin-top:auto">[Evidence: a number, source or example, ≤&nbsp;2 lines, ≤&nbsp;70 characters]</p>
+    </div>
+    <div class="c4 head rule2" data-role="unit" data-cap="statement ≤ 3 lines, ≤ 75 chars; support ≤ 5 lines, ≤ 150 chars; evidence ≤ 2 lines, ≤ 70 chars">
+      <p class="kicker">[02 · Label]</p>
+      <p><strong>[Statement: one claim, ≤&nbsp;3 lines, ≤&nbsp;75 characters]</strong></p>
+      <p class="s sec">[Support: the mechanism, evidence or example, ≤&nbsp;5 lines, ≤&nbsp;150 characters]</p>
+      <p class="cap rule" style="margin-top:auto">[Evidence: a number, source or example, ≤&nbsp;2 lines, ≤&nbsp;70 characters]</p>
+    </div>
+    <div class="c4 head rule2" data-role="unit" data-cap="statement ≤ 3 lines, ≤ 75 chars; support ≤ 5 lines, ≤ 150 chars; evidence ≤ 2 lines, ≤ 70 chars">
+      <p class="kicker">[03 · Label]</p>
+      <p><strong>[Statement: one claim, ≤&nbsp;3 lines, ≤&nbsp;75 characters]</strong></p>
+      <p class="s sec">[Support: the mechanism, evidence or example, ≤&nbsp;5 lines, ≤&nbsp;150 characters]</p>
+      <p class="cap rule" style="margin-top:auto">[Evidence: a number, source or example, ≤&nbsp;2 lines, ≤&nbsp;70 characters]</p>
+    </div>
+  </div>
+  <aside class="notes">[Speaker notes, optional: ≤&nbsp;80 words]</aside>
+</section>

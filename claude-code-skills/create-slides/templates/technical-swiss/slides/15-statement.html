@@ -1,0 +1,18 @@
+<!--
+  15 statement / quote (design spec §19).
+  Use: one claim or quotation that the deck turns on; at most once or twice per deck.
+  Grid: .c9 statement + .c3 attribution on a rule, bottom-aligned, centred vertically.
+  Capacity (864 px content height): statement ≤ 4 lines at 72 px (~33 characters per line,
+    ≤ 120 characters); attribution ≤ 3 lines at 28 px (~27 characters per line).
+    Flow ≈ kicker 32 + statement 332 = 364 of 864.
+  Defaults: attribute by source (a paper, a review, a requirement, a role) rather than a person's
+    name unless the user asks; no quotation-mark ornaments.
+-->
+<section>
+  <p class="kicker" data-role="section label" data-cap="1 line, ≤ 30 chars">[Section label · ≤&nbsp;30 characters]</p>
+  <div class="row" style="margin-top:auto;margin-bottom:auto;align-items:flex-end">
+    <p class="stmt c9" data-role="statement" data-cap="≤ 4 lines at 72 px, ≤ 120 chars">[Statement: one claim the deck turns on, ≤&nbsp;4 lines, ≤&nbsp;120 characters]</p>
+    <div class="c3 rule" data-role="attribution" data-cap="≤ 3 lines at 28 px; a source or role, not a name"><p class="cap">[Attribution: the source by document or role, ≤&nbsp;3 lines]</p></div>
+  </div>
+  <aside class="notes">[Speaker notes, optional: ≤&nbsp;40 words]</aside>
+</section>

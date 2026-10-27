@@ -1,0 +1,22 @@
+{
+  "title": "technical-swiss template gallery",
+  "theme": "technical-swiss",
+  "slides": [
+    "01-main-title",
+    "02-section-title",
+    "03-main-content",
+    "04-text-visual",
+    "05-text-images",
+    "06-full-figure",
+    "07-pipeline",
+    "08-equation",
+    "09-chart",
+    "10-table",
+    "11-image-compare",
+    "12-text-dominant",
+    "13-key-number",
+    "14-comparison",
+    "15-statement",
+    "16-summary"
+  ]
+}

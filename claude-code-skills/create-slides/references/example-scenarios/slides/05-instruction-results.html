@@ -1,0 +1,18 @@
+<section>
+  <div class="head"><p class="kicker">01 · Instruction types · <span class="nocase">ε</span> = 0.10</p><h2>Full-name instructions are the only ones worth acting on</h2></div>
+  <table>
+    <tr><th style="width:17%">scenario</th><th class="n">top-1</th><th class="n">coverage</th><th class="n">set</th><th class="n">act</th><th class="n">ask</th><th class="n">abstain</th><th class="n">wrong grasp</th><th class="n">look first</th></tr>
+    <tr class="bad"><td class="lab">absent box</td><td class="n">0.011</td><td class="n bad">0.401</td><td class="n">3.48</td><td class="n">25.6%</td><td class="n">73.9%</td><td class="n">0.4%</td><td class="n bad">25.6%</td><td class="n">71.0%</td></tr>
+    <tr><td>no green box</td><td class="n">0.978</td><td class="n">0.994</td><td class="n">3.88</td><td class="n">0.1%</td><td class="n">82.5%</td><td class="n">17.4%</td><td class="n">0.1%</td><td class="n">99.9%</td></tr>
+    <tr><td>no small green box</td><td class="n">0.989</td><td class="n">0.997</td><td class="n">3.34</td><td class="n">0.0%</td><td class="n">77.1%</td><td class="n">22.9%</td><td class="n">0.0%</td><td class="n">100.0%</td></tr>
+    <tr><td><b>full name</b></td><td class="n"><b>0.851</b></td><td class="n">0.979</td><td class="n">3.46</td><td class="n">19.2%</td><td class="n">80.2%</td><td class="n">0.6%</td><td class="n">1.5%</td><td class="n">75.4%</td></tr>
+    <tr><td>size only</td><td class="n">0.502</td><td class="n">0.933</td><td class="n">3.92</td><td class="n">8.1%</td><td class="n">89.3%</td><td class="n">2.7%</td><td class="n">2.9%</td><td class="n">81.1%</td></tr>
+    <tr><td>colour only</td><td class="n">0.480</td><td class="n">0.927</td><td class="n">3.49</td><td class="n">13.6%</td><td class="n">85.5%</td><td class="n">0.9%</td><td class="n">6.3%</td><td class="n">68.4%</td></tr>
+    <tr><td>the box</td><td class="n">0.245</td><td class="n">0.880</td><td class="n">4.26</td><td class="n">6.2%</td><td class="n">89.8%</td><td class="n">4.1%</td><td class="n">4.4%</td><td class="n">81.7%</td></tr>
+    <tr><td>next to</td><td class="n">0.469</td><td class="n">0.920</td><td class="n">3.92</td><td class="n">5.2%</td><td class="n">91.0%</td><td class="n">3.8%</td><td class="n">2.3%</td><td class="n">83.7%</td></tr>
+    <tr><td>left of, robot side</td><td class="n">0.476</td><td class="n">0.912</td><td class="n">3.84</td><td class="n">8.9%</td><td class="n">88.6%</td><td class="n">2.5%</td><td class="n">3.1%</td><td class="n">86.0%</td></tr>
+    <tr><td>left of, other side</td><td class="n">0.394</td><td class="n">0.895</td><td class="n">3.91</td><td class="n">8.3%</td><td class="n">88.9%</td><td class="n">2.9%</td><td class="n">4.2%</td><td class="n">86.8%</td></tr>
+    <tr class="total"><td>all</td><td class="n">0.587</td><td class="n">0.930</td><td class="n">3.74</td><td class="n">10.1%</td><td class="n">85.6%</td><td class="n">4.3%</td><td class="n">3.3%</td><td class="n">82.1%</td></tr>
+  </table>
+  <aside class="notes">Source: 80-run-unique-scenario.md §1, "Results, ε = 0.10". Test decisions per split (n), in row order: 30, 133, 133, 502, 266, 266, 133, 266, 122, 410; all 2261. The ε = 0.20 and after-the-look versions of this table stay in the source; slides 7 and 8 carry their findings.</aside>
+</section>

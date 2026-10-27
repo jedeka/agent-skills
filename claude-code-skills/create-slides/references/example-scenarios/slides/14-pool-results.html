@@ -1,0 +1,16 @@
+<section>
+  <div class="head"><p class="kicker">04 · Scene pools · <span class="nocase">ε</span> = 0.10 and 0.20</p><h2>Holdout scenes cover slightly less</h2></div>
+  <table>
+    <tr><th style="width:20%">pool</th><th class="n">top-1</th><th class="n">coverage</th><th class="n">set</th><th class="n">act</th><th class="n">wrong grasp</th><th class="n"><span class="nocase">ε</span> 0.20 coverage</th><th class="n"><span class="nocase">ε</span> 0.20 wrong</th></tr>
+    <tr><td>standard</td><td class="n">0.561</td><td class="n">0.932</td><td class="n">3.76</td><td class="n">9.0%</td><td class="n">3.1%</td><td class="n">0.673</td><td class="n">20.0%</td></tr>
+    <tr><td>absent box</td><td class="n">0.675</td><td class="n">0.920</td><td class="n">3.67</td><td class="n">13.5%</td><td class="n">3.8%</td><td class="n">0.739</td><td class="n">18.2%</td></tr>
+    <tr class="bad"><td class="lab">holdout</td><td class="n">0.528</td><td class="n">0.918</td><td class="n">3.77</td><td class="n">9.8%</td><td class="n">3.8%</td><td class="n">0.645</td><td class="n">23.1%</td></tr>
+    <tr><td>duplicate box</td><td class="n">0.704</td><td class="n">0.956</td><td class="n">3.60</td><td class="n">13.5%</td><td class="n">2.2%</td><td class="n">0.791</td><td class="n">12.9%</td></tr>
+    <tr><td>physical check</td><td class="n">0.618</td><td class="n">0.943</td><td class="n">3.80</td><td class="n">8.9%</td><td class="n">2.3%</td><td class="n">0.719</td><td class="n">16.3%</td></tr>
+    <tr><td>fit</td><td class="n">0.565</td><td class="n">0.935</td><td class="n">3.80</td><td class="n">8.6%</td><td class="n">3.0%</td><td class="n">0.678</td><td class="n">20.7%</td></tr>
+    <tr><td>dim</td><td class="n">0.585</td><td class="n">0.938</td><td class="n">3.82</td><td class="n">8.7%</td><td class="n">2.8%</td><td class="n">0.693</td><td class="n">18.8%</td></tr>
+    <tr><td>back-light</td><td class="n">0.559</td><td class="n">0.927</td><td class="n">3.78</td><td class="n">9.4%</td><td class="n">3.4%</td><td class="n">0.660</td><td class="n">21.3%</td></tr>
+  </table>
+  <p class="cap">Pools differ in instruction mix: duplicate-box scenes carry no “the box”, “next&nbsp;to” or “left&nbsp;of” instructions, and absent-box scenes have one distractor fewer. Dim and back-light match normal light because the change never reached the images.</p>
+  <aside class="notes">Source: 80-run-unique-scenario.md §4. n per pool: 1749, 512, 714, 504, 476, 952, 952, 952. For pools outside the split (holdout, duplicate box, physical check, fit, dim, back-light), n counts all their trials, which see a new threshold in each split.</aside>
+</section>

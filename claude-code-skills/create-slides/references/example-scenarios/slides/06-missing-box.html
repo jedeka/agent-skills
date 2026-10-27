@@ -1,0 +1,15 @@
+<section>
+  <div class="head"><p class="kicker">01 · Instruction types · finding</p><h2>A missing box is the most dangerous case</h2></div>
+  <div class="row">
+    <div class="c5 stack">
+      <div class="fig"><p class="big red" style="font-size:160px;letter-spacing:-4px">25.6%</p><p class="s">of decisions grasp some other box when the named box is missing (ε&nbsp;=&nbsp;0.10)</p></div>
+      <div class="fig"><p class="big red" style="font-size:160px;letter-spacing:-4px">84.9%</p><p class="s">at ε&nbsp;=&nbsp;0.20</p></div>
+    </div>
+    <div class="c7 stack">
+      <p class="rule">The right answer, N, is in the set only <b>40.1%</b> of the time. N is the model's top answer 1.1% of the time before the look and <b>0.0%</b> after it.</p>
+      <p class="rule">The average for missing-box instructions looks fine, 0.956, because 266 of its 296 test rows per split are “green” sentences, which the model handles (0.994, 0.997).</p>
+      <p class="rule">The robot asks on 73.9% of them, about sets of 3.48 labels that usually leave out “none”.</p>
+    </div>
+  </div>
+  <aside class="notes">Source: 80-run-unique-scenario.md §1, "What it shows". At ε = 0.20 coverage for the absent box falls to 0.046 with sets of 1.35 labels. The 0.956 average is the L0 coverage reported earlier for all missing-box instructions together.</aside>
+</section>

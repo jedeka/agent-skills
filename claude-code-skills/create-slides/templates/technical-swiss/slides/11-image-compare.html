@@ -1,0 +1,35 @@
+<!--
+  11 image comparison (design spec §15).
+  Use: the same view under 2–3 conditions, where the difference is the point.
+  Grid: three .c4 columns, images 4:3 at 565 x 424, label above and caption below each. For two
+    images use two .c6 columns with 16:9 images (860 x 484).
+  Capacity (864 px content height): label 1 line (≤ 28 characters; a wrapped label pushes its image off the shared top edge); caption ≤ 2 lines at 28 px
+    (~36 characters per line, ≤ 60 characters). Flow ≈ head 113 + 40 + 32 + 12 + 424 + 12 + 76
+    = 709 of 864.
+  Defaults: identical sizes and crops; one restrained marker on the focal image only (a 4 px blue
+    outline drawn inside the image and a blue label); no frames on the others.
+-->
+<section>
+  <div class="head" data-role="heading" data-cap="kicker ≤ 30 chars · title 1 line, ≤ 50 chars">
+    <p class="kicker">[Section label · ≤&nbsp;30 characters]</p>
+    <h2>[Slide title: the difference, one line, ≤&nbsp;50 characters]</h2>
+  </div>
+  <div class="row">
+    <div class="c4 fig" data-role="condition" data-cap="label 1 line, ≤ 28 chars; image 4:3 at 565 × 424; caption ≤ 2 lines, ≤ 60 chars">
+      <p class="kicker">[A · Condition]</p>
+      <img src="assets/placeholder-photo-a.png" alt="[Image A]" style="width:565px;height:424px">
+      <p class="cap">[Caption: what differs here, ≤&nbsp;2 lines, ≤&nbsp;60 characters]</p>
+    </div>
+    <div class="c4 fig" data-role="condition" data-cap="label 1 line, ≤ 28 chars; image 4:3 at 565 × 424; caption ≤ 2 lines, ≤ 60 chars">
+      <p class="kicker">[B · Condition]</p>
+      <img src="assets/placeholder-photo-b.png" alt="[Image B]" style="width:565px;height:424px">
+      <p class="cap">[Caption: what differs here, ≤&nbsp;2 lines, ≤&nbsp;60 characters]</p>
+    </div>
+    <div class="c4 fig" data-role="focal condition" data-cap="as a condition; blue label and outline">
+      <p class="kicker blue">[C · Focal condition]</p>
+      <img src="assets/placeholder-photo-c.png" alt="[Image C, the focal condition]" style="width:565px;height:424px;outline:4px solid var(--blue);outline-offset:-4px">
+      <p class="cap">[Caption: what the focal condition changes, ≤&nbsp;2 lines, ≤&nbsp;60 characters]</p>
+    </div>
+  </div>
+  <aside class="notes">[Speaker notes, optional: ≤&nbsp;80 words]</aside>
+</section>

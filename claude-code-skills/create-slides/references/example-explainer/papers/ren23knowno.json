@@ -1,0 +1,73 @@
+{
+ "key": "ren23knowno",
+ "short": "KnowNo",
+ "title": "Robots That Ask For Help: Uncertainty Alignment for Large Language Model Planners",
+ "authors": "Allen Z. Ren, Anushri Dixit, Alexandra Bodrova, Sumeet Singh, Stephen Tu, et al.",
+ "venue": "CoRL 2023",
+ "arxiv": "2307.01928",
+ "url": "https://arxiv.org/abs/2307.01928v2",
+ "source": {
+  "pdf": "https://arxiv.org/pdf/2307.01928v2",
+  "text": "sources/ren23knowno.txt"
+ },
+ "section": "Robot planners",
+ "tags": [
+  "Act or ask",
+  "Hardware and simulation"
+ ],
+ "problem": "Told to put the bowl in the microwave, with a metal and a plastic bowl on the counter, an LLM planner may confidently pick one, and the metal one is unsafe.",
+ "idea": [
+  "The LLM lists candidate next steps, then scores them as a multiple-choice question.",
+  "Conformal prediction keeps every option that clears a calibrated cut-off. One option left: act. More: ask."
+ ],
+ "figure": {
+  "file": "figs/ren23knowno.jpg",
+  "page": 3,
+  "box": [
+   372,
+   97,
+   506,
+   182
+  ],
+  "caption": "Fig. 2, right panel: calibration sets the score threshold at 0.32; only option B (0.56) clears it: one option left."
+ },
+ "takeaway": "Score the candidate steps as a multiple-choice question and let conformal prediction set the cut-off: one option left means act, more means ask.",
+ "finding": "The guarantee covers the plan, not the outcome",
+ "method": [
+  "Candidate steps A to D come from a few-shot prompt; E, \"an option not listed here\", is added.",
+  "Calibration score: one minus the LLM's probability of the true option, on N = 400 labelled scenarios."
+ ],
+ "formula": {
+  "tex": "C(\\tilde{x}) = \\{\\, y \\in \\mathcal{Y} : \\hat{f}(\\tilde{x})_y \\geq 1-\\hat{q} \\,\\}",
+  "reads": "The set keeps every option the LLM scores at least $1-\\hat{q}$."
+ },
+ "measures": [
+  "Plan success: the plan is correct, before the robot acts.",
+  "Help rate: the share of trials in which the robot asks."
+ ],
+ "certifies": {
+  "event": "the prediction set holds no correct option",
+  "guarantee": "coverage, with probability 1 − δ over calibration",
+  "level": "1 − ε = 0.85 (kitchen); N = 400, δ = 0.01",
+  "assumes": "i.i.d. scenarios; the human answers correctly when asked",
+  "quote": "In practice, we use a modest-sized calibration dataset (N = 400) and δ = 0.01",
+  "page": 4
+ },
+ "results": [
+  {
+   "text": "Kitchen, PaLM-2L, target 0.85: plan success 0.87, help rate 0.67.",
+   "quote": "KNOWNO PaLM-2L 0.85 0.87 0.76 2.22 0.67",
+   "page": 8
+  },
+  {
+   "text": "Simple Set, at equal plan success 0.87: help rate 0.81.",
+   "quote": "Simple Set PaLM-2L 0.76 0.87 0.75 2.38 0.81",
+   "page": 8
+  }
+ ],
+ "limits": [
+  "Execution is outside it: task success is 0.76 at the 0.85 target."
+ ],
+ "for_us": "An act-or-ask gate can reuse the one-option rule as it is; to bound wrong grasps, the certified event must be the physical outcome, not the plan.",
+ "notes": "Task success 0.76 is Table 2's Task Succ column (p.8). The paper puts low-level action success near 86% and names it as the cause of the gap between plan and task success (p.23). Accurate human help is assumed in the proof of Proposition 1 (p.5)."
+}

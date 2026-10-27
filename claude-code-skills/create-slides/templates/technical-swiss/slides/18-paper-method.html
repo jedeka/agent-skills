@@ -1,0 +1,81 @@
+<!--
+  18 paper method: slide 2 of a paper explainer (references/paper-explainer.md), after 17 paper idea.
+  Use: how the paper's method works, what it certifies, what it measured and where it stops, and what
+    that means for the reader's own work. scripts/explainer.py fills it from the paper's JSON (data-slot,
+    data-fit and data-lines as in 17).
+  Grid: .c6 left (Method, formula panel, Measures) + .c6 right (What it certifies, Results, Limits),
+    blocks on 2 px rules (Limits on the amber caveat rule), then a bar across all 12 columns that
+    starts with its label ("For us." by default). Without a formula the panel is dropped; for a paper
+    with no formal guarantee the certifies block is dropped. List items 10 px apart.
+  Type: running text at the label size, 24 px (the section sets --t-body and --t-cap to --t-meta),
+    one step under slide 17's 28 px: this is the detail slide, with six blocks and a formula, and
+    24 px is the theme's floor. Formula at the equation size (48 px), ≤ 812 px wide; bar 32 px, as in 17.
+  Capacity (measured; 864 px content height): title 1 line (≤ 55 characters). Each column gets 539 px;
+    a line is 31 px and ~70 characters. Costs: block label 65 px, gap 24 px, formula panel ≈ 122 px
+    plus its reading, certifies table 43 px a one-line row. Left: method + reading + measures ≈ 7
+    lines with a formula, ≈ 11 without. Right: under a four-row certifies table, results + limits ≈ 3
+    lines (≈ 9 without the table). Bar ≤ 2 lines with its label (≤ 170 characters).
+    Flow = head 113 + 40 + columns 539 + 40 + bar 131 = 863.
+  Defaults: every result carries its page, and its quote (checked against the paper) sits in the notes;
+    "What it certifies" states the theorem's event, guarantee type, level and assumptions, never a
+    measured rate; limits use the amber rule; nothing red or green; blue only for links.
+-->
+<section id="p-key-2" style="--t-body:var(--t-meta);--t-cap:var(--t-meta)" data-slot="section">
+  <div class="head">
+    <div class="row" style="justify-content:space-between;align-items:baseline">
+      <p class="kicker"><span data-slot="short">[Short name]</span> · How it works</p>
+      <a class="meta blue" href="#contents" style="text-decoration:none;flex:none">Contents&nbsp;↑</a>
+    </div>
+    <h2 data-slot="finding" data-lines="1">[Finding: what the paper shows, one line, ≤&nbsp;55 characters]</h2>
+  </div>
+  <div class="row stretch" style="flex:1;min-height:0">
+    <div class="c6 stack" style="gap:24px" data-fit="left column (method, formula, measures)">
+      <div class="head rule2">
+        <p class="kicker">Method</p>
+        <ul class="dash" style="gap:10px" data-slot="method">
+          <li>[Method step: what is computed from what, ≤&nbsp;2 lines, ≤&nbsp;110 characters]</li>
+          <li>[Method step, ≤&nbsp;2 lines]</li>
+        </ul>
+      </div>
+      <div class="panel stack" style="gap:12px" data-slot="formula">
+        <div class="math-display" data-slot="tex">\hat{\lambda} = \inf\{\lambda : \hat{R}(\lambda) \le \alpha\}</div>
+        <p class="cap" data-slot="reads">[Reading: the formula in words, ≤&nbsp;2 lines, ≤&nbsp;110 characters]</p>
+      </div>
+      <div class="head rule2">
+        <p class="kicker">Measures</p>
+        <ul class="dash" style="gap:10px" data-slot="measures">
+          <li>[Measure: name and definition, 1 line, ≤&nbsp;70 characters]</li>
+        </ul>
+      </div>
+    </div>
+    <div class="c6 stack" style="gap:24px" data-fit="right column (certifies, results, limits)">
+      <div class="head rule2" data-slot="certifies">
+        <p class="kicker">What it certifies</p>
+        <table>
+          <tbody>
+            <tr><td class="sec" style="width:150px;padding-left:0">Bounds</td><td data-slot="event">[The event or quantity the theorem bounds, ≤&nbsp;2 lines, ≤&nbsp;90 characters]</td></tr>
+            <tr><td class="sec" style="padding-left:0">Guarantee</td><td data-slot="guarantee">[Type: marginal, PAC, in expectation, ≤&nbsp;60 characters]</td></tr>
+            <tr><td class="sec" style="padding-left:0">Level, n</td><td data-slot="level">[Nominal level and calibration size, ≤&nbsp;60 characters]</td></tr>
+            <tr><td class="sec" style="padding-left:0">Assumes</td><td data-slot="assumes">[What the guarantee needs, e.g. exchangeable data, ≤&nbsp;70 characters]</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="head rule2">
+        <p class="kicker">Results</p>
+        <ul class="dash" style="gap:10px" data-slot="results">
+          <li><span data-slot="text">[Result: setting, number and comparison, ≤&nbsp;2 lines, ≤&nbsp;110 characters]</span> <span class="mono sec" style="font-size:var(--t-meta);white-space:nowrap" data-slot="page">p.[N]</span></li>
+        </ul>
+      </div>
+      <div class="head rule-amber">
+        <p class="kicker">Limits</p>
+        <ul class="dash" style="gap:10px" data-slot="limits">
+          <li>[Limit: what the result does not show, ≤&nbsp;2 lines, ≤&nbsp;110 characters]</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel" style="border-left:6px solid var(--ink)">
+    <p class="s" data-lines="2"><strong data-slot="callout">For us.</strong> <span data-slot="for_us">[What the paper means for the reader's own work, ≤&nbsp;2 lines with the label, ≤&nbsp;170 characters]</span></p>
+  </div>
+  <aside class="notes" data-slot="notes">[Speaker notes: each result's page and verbatim quote; caveats too long for the slide]</aside>
+</section>

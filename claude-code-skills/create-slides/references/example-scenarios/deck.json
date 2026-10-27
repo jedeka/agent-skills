@@ -1,0 +1,21 @@
+{
+  "title": "Scenarios in the 80-scene run",
+  "theme": "technical-swiss",
+  "slides": [
+    "01-cover",
+    "02-setup",
+    "03-how-to-read",
+    "04-instruction-types",
+    "05-instruction-results",
+    "06-missing-box",
+    "07-vague-instructions",
+    "08-look-by-instruction",
+    "09-camera-sets",
+    "10-camera-results",
+    "11-look-by-camera",
+    "12-before-after-look",
+    "13-scene-pools",
+    "14-pool-results",
+    "15-summary"
+  ]
+}

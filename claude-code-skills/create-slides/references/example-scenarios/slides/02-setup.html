@@ -1,0 +1,17 @@
+<section>
+  <div class="head"><p class="kicker">Setup</p><h2>Each split calibrates on 18 scenes and tests on 19</h2></div>
+  <div class="row">
+    <div class="c6 rule2 stack" style="gap:20px">
+      <p class="kicker">Calibration · 18 scenes</p>
+      <p>Only full-name and absent-box instructions in normal light, one row per scene: <b>18 rows</b> for Global CP, <b>54</b> for the <span style="white-space:nowrap">per-count</span> threshold (18&nbsp;per blocked count).</p>
+      <p>Output: the threshold. With 18 rows at ε&nbsp;=&nbsp;0.10 it is the largest calibration score, so it swings between splits: <b>0.444 to 0.997</b> for Global CP.</p>
+    </div>
+    <div class="c6 rule2 stack" style="gap:20px">
+      <p class="kicker">Test · 19 scenes</p>
+      <p>Every instruction type and camera set: <b>2,261 decisions</b> per split. Scenes kept out of the split (holdout, duplicate box, physical check, fit, dim, back-light) get the same thresholds.</p>
+      <p>Output: coverage, set size, actions, wrong grasps. All results in this deck are test results, averaged over <b>20 random splits</b>.</p>
+    </div>
+  </div>
+  <p class="cap">37 of the 80 scenes can calibrate or test. Every trial was scored once without and once with the wrist image; each context gets its own threshold.</p>
+  <aside class="notes">Test population: the test half of each split, i.e. scenes from the standard and absent-box pools, normal light, no holdout scenes, all instruction types. 2,261 is the "all" row's n in the instruction-type table of 80-run-unique-scenario.md.</aside>
+</section>

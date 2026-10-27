@@ -1,0 +1,24 @@
+<!--
+  01 main title (design spec §5).
+  Use: the first slide of every deck; one per deck.
+  Grid: .c7 title block + .c5 visual region (713 x 600), bottom-aligned; one context line on a rule underneath.
+    Without a visual, widen the title block to .c9 and drop the image.
+  Capacity (cover padding leaves 888 px): title ≤ 3 lines at 80 px (~22 characters per line in
+    .c7, so ≤ 60 characters); subtitle ≤ 2 lines (≤ 90 characters); context line 1 line
+    (≤ 110 characters). Any aspect fits the region (object-fit: contain, bottom-aligned); a 4:3
+    image shows at 713 x 535. Flow ≈ 32 + 40 + 600 + 40 + 53 = 765 of 888.
+  Defaults: no author names, affiliations, event names or dates unless the user asks for them;
+    the visual stays secondary to the title.
+-->
+<section class="cover" data-nofooter>
+  <p class="kicker" data-role="deck label" data-cap="1 line, ≤ 30 chars">[Deck label · ≤&nbsp;30 characters]</p>
+  <div class="row fill" style="align-items:flex-end">
+    <div class="c7 stack">
+      <h1 data-role="title" data-cap="≤ 3 lines at 80 px, ≤ 60 chars">[Title: the deck's subject or claim, ≤&nbsp;60 characters]</h1>
+      <p class="lead" data-role="subtitle" data-cap="≤ 2 lines, ≤ 90 chars">[Subtitle: scope or approach in one sentence, ≤&nbsp;2 lines, ≤&nbsp;90 characters]</p>
+    </div>
+    <div class="c5" data-role="cover visual" data-cap="713 × 600 slot; any aspect, bottom-aligned"><img src="assets/placeholder-cover.png" alt="[Cover visual: one diagram, photo or scene]" style="width:713px;height:600px;object-position:bottom"></div>
+  </div>
+  <p class="meta rule" data-role="context line" data-cap="1 line, ≤ 110 chars; no names or dates">[Context line: data, setting or scale, ≤&nbsp;110 characters. No names or dates unless asked]</p>
+  <aside class="notes">[Speaker notes, optional: the opening sentence, ≤&nbsp;60 words]</aside>
+</section>

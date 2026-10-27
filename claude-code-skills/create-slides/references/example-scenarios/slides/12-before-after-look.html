@@ -1,0 +1,12 @@
+<section>
+  <div class="head"><p class="kicker">03 · Before vs after the look</p><h2>The look raises accuracy, grasps and wrong grasps</h2></div>
+  <table class="lg">
+    <tr><th style="width:24%"></th><th class="n">top-1</th><th class="n">coverage</th><th class="n">set</th><th class="n">act</th><th class="n">ask</th><th class="n">abstain</th><th class="n">wrong grasp</th></tr>
+    <tr><td>Global, before</td><td class="n">0.587</td><td class="n">0.930</td><td class="n">3.74</td><td class="n">10.1%</td><td class="n">85.6%</td><td class="n">4.3%</td><td class="n">3.3%</td></tr>
+    <tr><td>Global, after</td><td class="n"><b>0.631</b></td><td class="n">0.908</td><td class="n">3.66</td><td class="n">16.3%</td><td class="n">78.0%</td><td class="n">5.6%</td><td class="n">5.6%</td></tr>
+    <tr class="focus"><td class="blue">per count, before</td><td class="n">0.587</td><td class="n">0.963</td><td class="n">3.94</td><td class="n">6.8%</td><td class="n">91.4%</td><td class="n">1.8%</td><td class="n">2.0%</td></tr>
+    <tr class="focus"><td class="blue">per count, after</td><td class="n"><b>0.631</b></td><td class="n">0.910</td><td class="n">3.62</td><td class="n">13.5%</td><td class="n">79.5%</td><td class="n">7.0%</td><td class="n">4.2%</td></tr>
+  </table>
+  <p class="cap">“After the look” means every trial was scored again with the wrist image added, under its own threshold. No rule decided to look. ε&nbsp;=&nbsp;0.10.</p>
+  <aside class="notes">Source: 80-run-unique-scenario.md §3. Post-look scores use temperature T = 4.5, with a threshold calibrated on post-look scores.</aside>
+</section>

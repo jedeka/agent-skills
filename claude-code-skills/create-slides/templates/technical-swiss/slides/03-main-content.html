@@ -1,0 +1,39 @@
+<!--
+  03 main content (design spec §7): title and content, the workhorse slide.
+  Use: a finding carried by 2–4 substantive points, with one subordinate note (a definition,
+    the setting, or a caveat).
+  Grid: .c8 points + .c4 side panel. For a caveat, swap .panel for .rule-amber and say so.
+  Capacity (864 px content height): title 1 line (≤ 50 characters). Points: ≤ 3 with a claim of
+    1 line (≤ 55 characters) and support of ≤ 2 lines (≤ 120 characters), or ≤ 4 with 1 support
+    line. Side panel ≤ 7 lines at 32 px (~29 characters per line, ≤ 200 characters).
+    Flow ≈ head 113 + 40 + 3 x 162 + 2 x 28 = 695 of 864.
+  Defaults: the title states the finding; one bold claim per point, nothing else bold.
+-->
+<section>
+  <div class="head" data-role="heading" data-cap="kicker ≤ 30 chars · title 1 line, ≤ 50 chars">
+    <p class="kicker">[Section label · ≤&nbsp;30 characters]</p>
+    <h2>[Slide title: the finding, one line, ≤&nbsp;50 characters]</h2>
+  </div>
+  <div class="row">
+    <div class="c8 stack">
+      <div class="head rule" data-role="point" data-cap="claim 1 line, ≤ 55 chars; support ≤ 2 lines, ≤ 120 chars; ≤ 3 points">
+        <p><strong>[Point 1: a claim, one line, ≤&nbsp;55 characters]</strong></p>
+        <p class="s sec">[Support: the evidence or mechanism behind point 1, ≤&nbsp;2 lines, ≤&nbsp;120 characters]</p>
+      </div>
+      <div class="head rule" data-role="point" data-cap="claim 1 line, ≤ 55 chars; support ≤ 2 lines, ≤ 120 chars; ≤ 3 points">
+        <p><strong>[Point 2: a claim, one line, ≤&nbsp;55 characters]</strong></p>
+        <p class="s sec">[Support: the evidence or mechanism behind point 2, ≤&nbsp;2 lines, ≤&nbsp;120 characters]</p>
+      </div>
+      <div class="head rule" data-role="point" data-cap="claim 1 line, ≤ 55 chars; support ≤ 2 lines, ≤ 120 chars; ≤ 3 points">
+        <p><strong>[Point 3: a claim, one line, ≤&nbsp;55 characters]</strong></p>
+        <p class="s sec">[Support: the evidence or mechanism behind point 3, ≤&nbsp;2 lines, ≤&nbsp;120 characters]</p>
+      </div>
+    </div>
+    <div class="c4 panel stack" data-role="side note" data-cap="≤ 7 lines at 32 px, ≤ 200 chars, then a source line">
+      <p class="kicker">[Note label · ≤&nbsp;20 characters]</p>
+      <p class="s">[Side note: the one thing a reader needs to read the points correctly, ≤&nbsp;7 lines, ≤&nbsp;200&nbsp;characters]</p>
+      <p class="meta">[Source: document, section or measurement, ≤&nbsp;2 lines]</p>
+    </div>
+  </div>
+  <aside class="notes">[Speaker notes, optional: ≤&nbsp;80 words]</aside>
+</section>

@@ -1,0 +1,65 @@
+<!--
+  07 pipeline / architecture (design spec §11).
+  Use: a system, model or data flow read left to right; the optional panel below opens up one
+    stage (the focal one) into its sub-steps.
+  Grid: .flow across .c12: 4 .node blocks with 64 px .arrow connectors (each node ≈ 388 px);
+    5 nodes fit at ≈ 297 px each with shorter text. The focal stage is .node.blue; a failing or
+    removed stage is .node.red. Drop the panel when no stage needs opening.
+  Capacity (864 px content height; character counts measured by rendering sample sentences): per
+    node (388 px) a step label, a name ≤ 20 characters (1 line at 32 px), a function of ≤ 3 lines at
+    28 px (≤ 75 characters), an I/O line ≤ 2 lines in mono at 25 px (25 characters a line, but words
+    do not split: ≤ 42 characters), pinned to the node's bottom (margin-top:auto) so the four I/O
+    lines align when the functions differ in length.
+    Panel: ≤ 3 sub-steps (523 px each) of ≤ 2 lines at 28 px (≤ 65 characters; some sentences of
+    69 characters already take 3 lines).
+    Flow ≈ head 113 + 40 + flow 290 + 40 + panel 240 = 723 of 864.
+  Binding: &nbsp; ties each arrow to the word before it (input&nbsp;→ output), so no line starts
+    with an arrow.
+  Defaults: flat forms, thin arrows, no icons; the major flow must read without the prose.
+-->
+<section>
+  <div class="head" data-role="heading" data-cap="kicker ≤ 30 chars · title 1 line, ≤ 50 chars">
+    <p class="kicker">[Section label · ≤&nbsp;30 characters]</p>
+    <h2>[Slide title: what the system does, one line, ≤&nbsp;50 characters]</h2>
+  </div>
+  <div class="flow">
+    <div class="node" data-role="stage" data-cap="name ≤ 20 chars; function ≤ 3 lines, ≤ 75 chars; I/O ≤ 2 lines, ≤ 42 chars">
+      <p class="kicker">[01 · Stage]</p>
+      <h3>[Component name]</h3>
+      <p class="cap">[Function: what it computes, ≤&nbsp;3 lines, ≤&nbsp;75 characters]</p>
+      <p class="cap" style="margin-top:auto"><span class="mono">[input&nbsp;→ output]</span></p>
+    </div>
+    <div class="arrow"></div>
+    <div class="node" data-role="stage" data-cap="name ≤ 20 chars; function ≤ 3 lines, ≤ 75 chars; I/O ≤ 2 lines, ≤ 42 chars">
+      <p class="kicker">[02 · Stage]</p>
+      <h3>[Component name]</h3>
+      <p class="cap">[Function: what it computes, ≤&nbsp;3 lines, ≤&nbsp;75 characters]</p>
+      <p class="cap" style="margin-top:auto"><span class="mono">[input&nbsp;→ output]</span></p>
+    </div>
+    <div class="arrow"></div>
+    <div class="node blue" data-role="focal stage" data-cap="as a stage; blue rule and label">
+      <p class="kicker blue">[03 · Focal stage]</p>
+      <h3>[Component name]</h3>
+      <p class="cap">[Function: what the focal stage adds, ≤&nbsp;3 lines, ≤&nbsp;75&nbsp;characters]</p>
+      <p class="cap" style="margin-top:auto"><span class="mono">[input&nbsp;→ output]</span></p>
+    </div>
+    <div class="arrow"></div>
+    <div class="node" data-role="stage" data-cap="name ≤ 20 chars; function ≤ 3 lines, ≤ 75 chars; I/O ≤ 2 lines, ≤ 42 chars">
+      <p class="kicker">[04 · Stage]</p>
+      <h3>[Component name]</h3>
+      <p class="cap">[Function: what it computes, ≤&nbsp;3 lines, ≤&nbsp;75 characters]</p>
+      <p class="cap" style="margin-top:auto"><span class="mono">[input&nbsp;→ output]</span></p>
+    </div>
+  </div>
+  <div class="panel head" data-role="inside the focal stage" data-cap="≤ 3 sub-steps of ≤ 2 lines, ≤ 65 chars each">
+    <p class="kicker">[Inside the focal stage]</p>
+    <div class="flow">
+      <div class="node blue"><h3>[Sub-step 1]</h3><p class="cap">[What happens, ≤&nbsp;2 lines, ≤&nbsp;65 characters]</p></div>
+      <div class="arrow"></div>
+      <div class="node blue"><h3>[Sub-step 2]</h3><p class="cap">[What happens, ≤&nbsp;2 lines, ≤&nbsp;65 characters]</p></div>
+      <div class="arrow"></div>
+      <div class="node blue"><h3>[Sub-step 3]</h3><p class="cap">[What happens, ≤&nbsp;2 lines, ≤&nbsp;65 characters]</p></div>
+    </div>
+  </div>
+  <aside class="notes">[Speaker notes, optional: walk the flow once, ≤&nbsp;80 words]</aside>
+</section>

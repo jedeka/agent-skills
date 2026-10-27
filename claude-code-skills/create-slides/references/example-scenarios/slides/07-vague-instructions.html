@@ -1,0 +1,12 @@
+<section>
+  <div class="head"><p class="kicker">01 · Instruction types · finding</p><h2>For vague instructions, loosening ε is unsafe</h2></div>
+  <div class="row">
+    <div class="c4 stack">
+      <p>At ε&nbsp;=&nbsp;0.10 the robot asks <span style="white-space:nowrap">86–91%</span> of the time on vague instructions, which is the intended move.</p>
+      <p class="rule">At ε&nbsp;=&nbsp;0.20 it grasps <span style="white-space:nowrap">40–62%</span> of the time on them, and <span style="white-space:nowrap">21–31%</span> of all their decisions grasp the wrong box.</p>
+      <p class="rule">For “the box”, top-1 is 0.245: chance with four candidates.</p>
+    </div>
+    <img class="c8" style="height:704px" src="assets/chart_wrong_by_instruction.png" alt="Wrong grasps by instruction type at epsilon 0.10 and 0.20">
+  </div>
+  <aside class="notes">Ranges come from the six vague rows (size only through left of, other side; L2–L4 in the source) of the ε = 0.20 table in 80-run-unique-scenario.md §1 (act 40.0–62.2%, wrong grasp 20.7–31.0%). Chart: ε = 0.10 open circles, ε = 0.20 filled; the absent-box row is red because it is the failure case.</aside>
+</section>

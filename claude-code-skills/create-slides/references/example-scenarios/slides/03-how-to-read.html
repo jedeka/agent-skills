@@ -1,0 +1,14 @@
+<section>
+  <div class="head"><p class="kicker">How to read the tables</p><h2>Eight numbers per scenario</h2></div>
+  <table class="lg">
+    <tr><th style="width:24%">column</th><th>meaning</th></tr>
+    <tr><td><b>top-1</b></td><td>share where the model's most probable label is right; no threshold involved</td></tr>
+    <tr><td><b>coverage</b></td><td>share where the right label is in the set (target 0.90 at ε&nbsp;=&nbsp;0.10, 0.80 at ε&nbsp;=&nbsp;0.20)</td></tr>
+    <tr><td><b>set</b></td><td>mean labels in the set, out of 5: spots <span style="white-space:nowrap">1–4</span> and N for “none”</td></tr>
+    <tr><td><b>act · ask · abstain</b></td><td>share of decisions: one box → act, two or more labels → ask, {N} or empty → abstain</td></tr>
+    <tr><td><b>wrong grasp</b></td><td>share of all decisions that grasp a box other than the intended one</td></tr>
+    <tr><td><b>look first</b></td><td>share the decision policy would send to a wrist look as its first move</td></tr>
+  </table>
+  <p class="cap">Defaults: Global CP (one threshold), ε&nbsp;=&nbsp;0.10, before the look, test scenes, mean of 20 splits. For a missing box the right label is N; for a vague instruction it is the box the speaker meant.</p>
+  <aside class="notes">Wrong grasp, in full: for a missing box, any grasp counts as wrong. The source tables also carry n (test decisions per split, mean over 20 splits); the slides drop it as a column and keep it here and in the source.</aside>
+</section>

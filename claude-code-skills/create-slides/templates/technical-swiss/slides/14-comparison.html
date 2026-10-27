@@ -1,0 +1,47 @@
+<!--
+  14 comparison (design spec §18).
+  Use: 2–3 alternatives (methods, conditions, designs) judged on the same few attributes, with
+    one focal alternative.
+  Grid: .grid12 rows; the attribute column and each alternative span 3 columns. For two
+    alternatives use .span4 throughout. The focal alternative sits last (rightmost), on a blue
+    rule with a blue name and semibold values; the others stay neutral.
+  Capacity (864 px content height): ≤ 3 attribute rows plus a verdict row. Name ≤ 20 characters
+    (1 line at 32 px); value 1 line at 38 px (≤ 18 characters); note 1 line at 28 px (≤ 26
+    characters); attribute label ≤ 20 characters at 32 px with a 1-line unit (≤ 30 characters).
+    Flow ≈ head 113 + 40 + header 108 + 3 x 108 + verdict 97 + gaps 64 = 746 of 864.
+  Defaults: the axis of comparison is the row; red marks a value below target, never "the other
+    method".
+-->
+<section>
+  <div class="head" data-role="heading" data-cap="kicker ≤ 30 chars · title 1 line, ≤ 50 chars">
+    <p class="kicker">[Section label · ≤&nbsp;30 characters]</p>
+    <h2>[Slide title: how the focal option differs, ≤&nbsp;50 characters]</h2>
+  </div>
+  <div class="grid12" style="row-gap:16px">
+    <div class="span3"></div>
+    <div class="span3 head rule2" data-role="option" data-cap="label + name ≤ 20 chars"><p class="kicker">[Option A]</p><h3>[Option name]</h3></div>
+    <div class="span3 head rule2" data-role="option" data-cap="label + name ≤ 20 chars"><p class="kicker">[Option B]</p><h3>[Option name]</h3></div>
+    <div class="span3 head rule-blue" data-role="focal option" data-cap="label + name ≤ 20 chars; blue"><p class="kicker blue">[Focal]</p><h3 class="blue">[Focal option name]</h3></div>
+
+    <div class="span3 rule" data-role="attribute" data-cap="label ≤ 20 chars; unit ≤ 30 chars"><p class="s">[Attribute 1]</p><p class="meta">[Unit or definition, ≤&nbsp;30 chars]</p></div>
+    <div class="span3 rule" data-role="value" data-cap="1 line, ≤ 18 chars; note ≤ 26 chars"><p>[Value, ≤&nbsp;18 chars]</p><p class="cap">[Note, ≤&nbsp;26 characters]</p></div>
+    <div class="span3 rule" data-role="value" data-cap="1 line, ≤ 18 chars; note ≤ 26 chars"><p class="red">[Value below target]</p><p class="cap">[Note, ≤&nbsp;26 characters]</p></div>
+    <div class="span3 rule" data-role="value" data-cap="1 line, ≤ 18 chars; note ≤ 26 chars"><p><strong>[Value, ≤&nbsp;18 chars]</strong></p><p class="cap">[Note, ≤&nbsp;26 characters]</p></div>
+
+    <div class="span3 rule" data-role="attribute" data-cap="label ≤ 20 chars; unit ≤ 30 chars"><p class="s">[Attribute 2]</p><p class="meta">[Unit or definition, ≤&nbsp;30 chars]</p></div>
+    <div class="span3 rule" data-role="value" data-cap="1 line, ≤ 18 chars; note ≤ 26 chars"><p>[Value, ≤&nbsp;18 chars]</p><p class="cap">[Note, ≤&nbsp;26 characters]</p></div>
+    <div class="span3 rule" data-role="value" data-cap="1 line, ≤ 18 chars; note ≤ 26 chars"><p>[Value, ≤&nbsp;18 chars]</p><p class="cap">[Note, ≤&nbsp;26 characters]</p></div>
+    <div class="span3 rule" data-role="value" data-cap="1 line, ≤ 18 chars; note ≤ 26 chars"><p><strong>[Value, ≤&nbsp;18 chars]</strong></p><p class="cap">[Note, ≤&nbsp;26 characters]</p></div>
+
+    <div class="span3 rule" data-role="attribute" data-cap="label ≤ 20 chars; unit ≤ 30 chars"><p class="s">[Attribute 3]</p><p class="meta">[Unit or definition, ≤&nbsp;30 chars]</p></div>
+    <div class="span3 rule" data-role="value" data-cap="1 line, ≤ 18 chars; note ≤ 26 chars"><p>[Value, ≤&nbsp;18 chars]</p><p class="cap">[Note, ≤&nbsp;26 characters]</p></div>
+    <div class="span3 rule" data-role="value" data-cap="1 line, ≤ 18 chars; note ≤ 26 chars"><p>[Value, ≤&nbsp;18 chars]</p><p class="cap">[Note, ≤&nbsp;26 characters]</p></div>
+    <div class="span3 rule" data-role="value" data-cap="1 line, ≤ 18 chars; note ≤ 26 chars"><p><strong>[Value, ≤&nbsp;18 chars]</strong></p><p class="cap">[Note, ≤&nbsp;26 characters]</p></div>
+
+    <div class="span3 rule2"><p class="s"><strong>Use when</strong></p></div>
+    <div class="span3 rule2" data-role="use when" data-cap="≤ 2 lines at 28 px"><p class="cap">[When option A is the right choice, ≤&nbsp;2 lines]</p></div>
+    <div class="span3 rule2" data-role="use when" data-cap="≤ 2 lines at 28 px"><p class="cap">[When option B is the right choice, ≤&nbsp;2 lines]</p></div>
+    <div class="span3 rule-blue" data-role="use when" data-cap="≤ 2 lines at 28 px"><p class="cap">[When the focal option is the right choice, ≤&nbsp;2 lines]</p></div>
+  </div>
+  <aside class="notes">[Speaker notes, optional: ≤&nbsp;80 words]</aside>
+</section>

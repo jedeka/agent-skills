@@ -1,0 +1,73 @@
+{
+ "key": "angelopoulos22crc",
+ "short": "Conformal risk control",
+ "title": "Conformal Risk Control",
+ "authors": "Anastasios N. Angelopoulos, Stephen Bates, Adam Fisch, Lihua Lei, Tal Schuster",
+ "venue": "Preprint 2022",
+ "arxiv": "2208.02814",
+ "url": "https://arxiv.org/abs/2208.02814v4",
+ "source": {
+  "pdf": "https://arxiv.org/pdf/2208.02814v4",
+  "text": "sources/angelopoulos22crc.txt"
+ },
+ "section": "Foundations",
+ "tags": [
+  "Expected loss",
+  "Vision and language data"
+ ],
+ "problem": "Conformal prediction bounds one error: a set that misses the true label. Many tasks pay a graded loss instead, such as the fraction of a tumour a mask misses.",
+ "idea": [
+  "Index the outputs by λ: a larger λ gives a more conservative output and never a larger loss.",
+  "Choose λ on calibration data so the risk stays at most α even if the next loss is the worst case."
+ ],
+ "figure": {
+  "file": "figs/angelopoulos22crc.jpg",
+  "page": 6,
+  "box": [
+   72,
+   262,
+   304,
+   374
+  ],
+  "caption": "Fig. 1, bottom left: the false-negative rate of the polyp masks over 1000 random splits; α = 0.1 dashed."
+ },
+ "takeaway": "Take the most liberal threshold whose calibration risk, padded by one worst-case loss, stays at most α: the expected loss on a new point is then at most α.",
+ "finding": "Expected-loss bound for any bounded monotone loss",
+ "method": [
+  "Loss: any bounded function of the output that never grows as λ grows, e.g. the fraction of a tumour missed.",
+  "With a 0/1 miss-the-label loss it is split conformal prediction (§2.3)."
+ ],
+ "formula": {
+  "tex": "\\hat{\\lambda} = \\inf\\{\\lambda : \\frac{n}{n+1}\\hat{R}_n(\\lambda) + \\frac{B}{n+1} \\le \\alpha\\}",
+  "reads": "The smallest λ whose padded calibration loss is at most α."
+ },
+ "measures": [
+  "Risk: the mean loss on held-out points, per random split.",
+  "Set size: what the guarantee costs in pixels, labels or answers."
+ ],
+ "certifies": {
+  "event": "the expected loss on a new test point",
+  "guarantee": "in expectation, not with high probability",
+  "level": "α = 0.1, n = 1000 (polyps); losses at most B = 1",
+  "assumes": "exchangeable data; loss monotone and right-continuous in λ",
+  "quote": "Theorem 1. Assume that Li(λ) is non-increasing in λ, right-continuous",
+  "page": 3
+ },
+ "results": [
+  {
+   "text": "Polyps, false-negative rate at α = 0.1: mean 0.0987 over 1000 splits.",
+   "quote": "We report results with α = 0.1 in Figure 1. The mean and standard deviation of the risk over 1000 trials are 0.0987 and 0.0114",
+   "page": 6
+  },
+  {
+   "text": "ImageNet, graph-distance loss at α = 0.05: mean 0.0499.",
+   "quote": "We report results with α = 0.05 in Figure 3. The mean and standard deviation of the risk over 1000 trials are 0.0499",
+   "page": 8
+  }
+ ],
+ "limits": [
+  "A loss that is not monotone in λ voids it (Prop. 1)."
+ ],
+ "for_us": "With a 0/1 wrong-grasp loss this rule is split conformal prediction; it adds value once errors are graded, an irreversible one costing more.",
+ "notes": "n = 1000 calibration points for polyps (p.6); every loss in §3 is bounded by 1 (p.5). Theorem 2 (p.4): with i.i.d. losses and no jumps, the risk is at least α − 2B/(n+1). Distribution shift, quantile and multiple risks: §4. Proposition 1 (p.5): for a non-monotone loss the risk can come within any ε of B."
+}

@@ -1,0 +1,16 @@
+<section>
+  <div class="head"><p class="kicker">02 · Camera sets · <span class="nocase">ε</span> = 0.10</p><h2>The top camera alone is the weakest view</h2></div>
+  <table>
+    <tr><th style="border-bottom:none"></th><th style="border-bottom:none"></th><th colspan="5" style="text-align:center;border-bottom:1px solid var(--rule)">Global CP</th><th colspan="4" class="blue" style="text-align:center;border-bottom:1px solid var(--rule)">per count</th></tr>
+    <tr><th style="width:17%">cameras</th><th class="n">top-1</th><th class="n">coverage</th><th class="n">set</th><th class="n">act</th><th class="n">wrong</th><th class="n">look first</th><th class="n">coverage</th><th class="n">set</th><th class="n">act</th><th class="n">wrong</th></tr>
+    <tr><td>top + left + right</td><td class="n">0.592</td><td class="n">0.936</td><td class="n">3.98</td><td class="n">7.7%</td><td class="n">2.5%</td><td class="n">64.5%</td><td class="n">0.913</td><td class="n">3.77</td><td class="n">15.5%</td><td class="n">6.5%</td></tr>
+    <tr><td>top + left</td><td class="n">0.570</td><td class="n">0.930</td><td class="n">3.83</td><td class="n">8.8%</td><td class="n">3.0%</td><td class="n">87.2%</td><td class="n">0.968</td><td class="n">3.94</td><td class="n">5.7%</td><td class="n">1.6%</td></tr>
+    <tr><td>top + right</td><td class="n">0.578</td><td class="n">0.934</td><td class="n">3.83</td><td class="n">8.7%</td><td class="n">2.9%</td><td class="n">87.3%</td><td class="n">0.971</td><td class="n">3.95</td><td class="n">5.2%</td><td class="n">1.3%</td></tr>
+    <tr><td>left + right</td><td class="n">0.602</td><td class="n">0.939</td><td class="n">3.92</td><td class="n">8.5%</td><td class="n">2.3%</td><td class="n">87.8%</td><td class="n">0.974</td><td class="n">4.03</td><td class="n">5.3%</td><td class="n">1.2%</td></tr>
+    <tr class="bad"><td class="lab">top only</td><td class="n bad">0.497</td><td class="n">0.908</td><td class="n">3.53</td><td class="n">10.3%</td><td class="n bad">4.6%</td><td class="n">84.8%</td><td class="n">0.964</td><td class="n">3.97</td><td class="n">4.1%</td><td class="n">1.8%</td></tr>
+    <tr><td>left only</td><td class="n">0.639</td><td class="n">0.928</td><td class="n">3.53</td><td class="n">13.4%</td><td class="n">3.8%</td><td class="n">81.2%</td><td class="n">0.973</td><td class="n">3.94</td><td class="n">6.0%</td><td class="n">1.2%</td></tr>
+    <tr><td>right only</td><td class="n">0.631</td><td class="n">0.933</td><td class="n">3.56</td><td class="n">13.5%</td><td class="n">3.7%</td><td class="n">81.4%</td><td class="n">0.977</td><td class="n">3.98</td><td class="n">5.8%</td><td class="n">0.7%</td></tr>
+  </table>
+  <p class="cap">All instruction types. “Per count” is one threshold per number of blocked cameras. Adding the top camera to side views lowers top-1 in every pairing.</p>
+  <aside class="notes">Source: 80-run-unique-scenario.md §2, "Results, ε = 0.10, all instruction types"; n = 323 per camera set. Caveat: these rows cover all instruction types; results restricted to the calibrated instructions (full name and absent box) show higher coverage. The ε = 0.20 table stays in the source.</aside>
+</section>

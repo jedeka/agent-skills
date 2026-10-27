@@ -1,0 +1,44 @@
+<!--
+  10 table (design spec §14).
+  Use: values that must be read exactly and compared across rows (methods x metrics).
+  Grid: .c9 table + .c3 reading guide. A table with > 5 numeric columns takes .c12 and moves the
+    reading into the title.
+  Capacity (864 px content height): with table.lg (32 px) ≤ 8 body rows of 1 line; with the
+    default 28 px table ≤ 12 rows. ≤ 6 columns in .c9 (~215 px each). Reading ≤ 5 lines at
+    32 px (~23 characters per line, ≤ 110 characters).
+    Flow ≈ head 113 + 40 + header 48 + 7 x 53 = 572 of 864.
+  Defaults: numbers right-aligned in .n columns with the same precision per column (a text column
+    after a .n column gets 28 px of left padding from the theme, 40 px from the numbers); one tr.focus
+    row (the focal method). Status, by the theme's fixed colour meanings: td.bad for a value below
+    target (red), td.good for one that meets it (green), td.amber for a caveat (amber: provisional,
+    small n, not comparable); tr.bad or tr.amber on a row colours its label cell, marked td.lab.
+    Headers are set in capitals: wrap a unit or variable in <span class="nocase"> (ms, n).
+-->
+<section>
+  <div class="head" data-role="heading" data-cap="kicker ≤ 30 chars · title 1 line, ≤ 50 chars">
+    <p class="kicker">[Section label · ≤&nbsp;30 characters]</p>
+    <h2>[Slide title: what the table shows, ≤&nbsp;50 characters]</h2>
+  </div>
+  <div class="row">
+    <div class="c9">
+      <table class="lg" data-role="table" data-cap="≤ 8 one-line rows at 32 px (≤ 12 at 28 px); ≤ 6 columns">
+        <thead><tr><th>[Method]</th><th class="n">[Metric 1&nbsp;↑]</th><th class="n">[Metric 2&nbsp;↓]</th><th class="n">[Metric 3&nbsp;↑]</th><th class="n">[Cost]</th></tr></thead>
+        <tbody>
+          <tr><td>[Baseline A]</td><td class="n">[0.00]</td><td class="n">[0.00]</td><td class="n">[0.00]</td><td class="n">[0.0 s]</td></tr>
+          <tr><td>[Baseline B]</td><td class="n">[0.00]</td><td class="n bad">[0.00]</td><td class="n">[0.00]</td><td class="n">[0.0 s]</td></tr>
+          <tr><td>[Baseline C]</td><td class="n">[0.00]</td><td class="n">[0.00]</td><td class="n">[0.00]</td><td class="n">[0.0 s]</td></tr>
+          <tr><td>[Baseline D]</td><td class="n">[0.00]</td><td class="n">[0.00]</td><td class="n">[0.00]</td><td class="n">[0.0 s]</td></tr>
+          <tr><td>[Ablation: focal&nbsp;−&nbsp;part]</td><td class="n">[0.00]</td><td class="n">[0.00]</td><td class="n">[0.00]</td><td class="n">[0.0 s]</td></tr>
+          <tr class="focus"><td>[Focal method]</td><td class="n">[0.00]</td><td class="n good">[0.00]</td><td class="n">[0.00]</td><td class="n">[0.0 s]</td></tr>
+          <tr><td>[Reference or upper bound]</td><td class="n">[0.00]</td><td class="n">[0.00]</td><td class="n">[0.00]</td><td class="n">[0.0 s]</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="c3 stack" data-role="reading" data-cap="≤ 5 lines at 32 px, ≤ 110 chars, then a key line">
+      <p class="kicker">Reading</p>
+      <p class="s">[What the highlighted row shows against the rest, ≤&nbsp;5 lines, ≤&nbsp;110 characters]</p>
+      <p class="meta">[Units, n, what&nbsp;↑&nbsp;/&nbsp;↓ mean, red&nbsp;=&nbsp;below target, green&nbsp;=&nbsp;meets it]</p>
+    </div>
+  </div>
+  <aside class="notes">[Speaker notes, optional: ≤&nbsp;80 words]</aside>
+</section>

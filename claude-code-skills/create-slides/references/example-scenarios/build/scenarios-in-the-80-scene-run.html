@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scenarios in the 80-scene run</title>
+<style>
+/* technical-swiss: the default theme of the create-slides skill.
+   A Swiss-grid layout carrying full technical detail: 1920x1080 canvas (16:9; 1 pt = 2 px),
+   12-column grid, 88 px side margins, 24 px gutters, Inter + JetBrains Mono. Rules and the reasons
+   behind them: references/technical-swiss.md. Every slide is one <section> inside a .slide wrapper
+   that scripts/deck.py adds; the build inserts the footer: the page number, plus a short label only
+   when asked, never a date. data-layer="overlay" on an element marks it as meant to sit on other
+   content (a label on an image); deck.py check and pdfcheck.py then allow that overlap.
+   Kickers (.kicker) and table headers (th) are set in capitals by text-transform, which also
+   capitalises a variable or unit inside them: "n = 18" shows as "N = 18", ms as MS, ε as Ε. Wrap
+   such text in <span class="nocase"> to keep its case.
+   Lists: ul.dash hangs an en dash at the column's left edge and indents the text 1 em, so wrapped
+   lines align under the first; ul.plain has no markers.
+   Table status: td.bad (below target, red), td.good (meets target, green), td.amber (caveat:
+   provisional, small n, not comparable); on a row, tr.bad and tr.amber colour the label cell td.lab.
+   Fonts: Inter and JetBrains Mono, both SIL Open Font License 1.1 (fonts/LICENSES/). */
+
+@font-face{font-family:'Inter';font-weight:400;src:local('Inter'),url('fonts/Inter-400.ttf')}
+@font-face{font-family:'Inter';font-weight:500;src:local('Inter Medium'),url('fonts/Inter-500.ttf')}
+@font-face{font-family:'Inter';font-weight:600;src:local('Inter SemiBold'),url('fonts/Inter-600.ttf')}
+@font-face{font-family:'Inter';font-weight:700;src:local('Inter Bold'),url('fonts/Inter-700.ttf')}
+@font-face{font-family:'JetBrains Mono';font-weight:400;src:local('JetBrains Mono'),url('fonts/JetBrainsMono-400.ttf')}
+@font-face{font-family:'JetBrains Mono';font-weight:600;src:local('JetBrains Mono SemiBold'),url('fonts/JetBrainsMono-600.ttf')}
+
+:root{
+  /* colour: neutrals carry the structure; accents carry one fixed meaning each */
+  --bg:#FFFFFF; --ink:#111111; --sec:#666666; --ter:#929292; --rule:#D9D9D9; --panel:#F4F4F2;
+  --red:#D93838;    /* failure, below target, the dangerous case */
+  --blue:#315EF5;   /* the focal method or condition of the deck */
+  --green:#198754;  /* meets target, passes (use sparingly) */
+  --amber:#C78A00;  /* caveat, limitation, provisional */
+  /* type scale in px on the 1920 canvas (pt x 2) */
+  --t-title:80px;   /* main title, 40 pt */
+  --t-section:104px;/* section title, 52 pt */
+  --t-h2:60px;      /* slide title, 30 pt */
+  --t-stmt:72px;    /* key statement / quote, 36 pt */
+  --t-key:240px;    /* key number */
+  --t-body:38px;    /* body, 19 pt */
+  --t-sec:32px;     /* secondary, 16 pt */
+  --t-cap:28px;     /* caption, table text, 14 pt */
+  --t-meta:24px;    /* labels, footer, 12 pt */
+  --t-eq:48px;      /* equations, 24 pt */
+  --foot-band:80px; /* bottom band that only the footer may enter (deck.py check, pdfcheck.py) */
+}
+
+html,body{margin:0}
+body{background:#E9E9E7;font-family:'Inter',Arial,sans-serif;color:var(--ink)}
+.slide{width:1920px;height:1080px;transform-origin:top left;margin:0 0 24px 0}
+
+section{position:relative;width:1920px;height:1080px;overflow:hidden;box-sizing:border-box;background:var(--bg);
+  padding:80px 88px 136px 88px;display:flex;flex-direction:column;gap:40px;
+  font-family:'Inter',Arial,sans-serif;color:var(--ink)}
+section *{margin:0;box-sizing:border-box}
+/* line breaking: pretty avoids most one-word last lines; headings balance their lines
+   (deck.py check reports any one-word last line that remains, as kind "widow") */
+section{text-wrap:pretty} section h1,section h2{text-wrap:balance}
+section.cover,section.section{padding:96px 88px 96px 88px}
+
+/* ---- type ---- */
+.kicker{font-size:var(--t-meta);font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--sec)}
+h1{font-size:var(--t-title);font-weight:700;line-height:1.05;letter-spacing:-2px}
+h1.section-title{font-size:var(--t-section);letter-spacing:-3px}
+h2{font-size:var(--t-h2);font-weight:600;line-height:1.15;letter-spacing:-1px}
+h3{font-size:var(--t-sec);font-weight:600;line-height:1.3}
+p,li{font-size:var(--t-body);line-height:1.3}
+.lead{font-size:var(--t-body);line-height:1.3;color:var(--sec)}
+.s{font-size:var(--t-sec)} p.s,li.s{font-size:var(--t-sec)}
+.cap{font-size:var(--t-cap);line-height:1.35;color:var(--sec)}
+.meta{font-size:var(--t-meta);line-height:1.35;color:var(--sec)}
+.stmt{font-size:var(--t-stmt);font-weight:600;line-height:1.15;letter-spacing:-1px}
+.big{font-size:var(--t-key);font-weight:700;line-height:1;letter-spacing:-6px;font-variant-numeric:tabular-nums}
+.num{font-size:64px;font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums}
+.eq{font-family:'JetBrains Mono','Courier New',monospace;font-size:var(--t-eq);line-height:1.3}
+code,.mono{font-family:'JetBrains Mono','Courier New',monospace;font-size:0.9em}
+ul.plain{list-style:none;padding:0;display:flex;flex-direction:column;gap:20px}
+/* en-dash list: the dash on the column edge, the text on a 1 em hanging indent */
+ul.dash{list-style:none;padding:0;display:flex;flex-direction:column;gap:16px}
+ul.dash>li{position:relative;padding-left:1em}
+ul.dash>li::before{content:'\2013';position:absolute;left:0;top:0}
+.nocase{text-transform:none}       /* keeps n, ms, kB, ε as written inside a .kicker or th */
+
+/* ---- colour utilities (meaning, never decoration) ---- */
+.sec{color:var(--sec)} .ter{color:var(--ter)}
+.red{color:var(--red)} .blue{color:var(--blue)} .green{color:var(--green)} .amber{color:var(--amber)}
+
+/* ---- layout: 12 columns of 123.33 px with 24 px gutters inside 1744 px ---- */
+.head{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;flex-direction:row;gap:24px;align-items:flex-start}
+.row.stretch{align-items:stretch}
+.stack{display:flex;flex-direction:column;gap:28px}
+.fill{flex:1}
+.grid12{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.c1{width:123px}.c2{width:271px}.c3{width:418px}.c4{width:565px}.c5{width:713px}.c6{width:860px}
+.c7{width:1007px}.c8{width:1155px}.c9{width:1302px}.c10{width:1449px}.c11{width:1597px}.c12{width:1744px}
+.span2{grid-column:span 2}.span3{grid-column:span 3}.span4{grid-column:span 4}.span6{grid-column:span 6}
+.rule{border-top:1px solid var(--rule);padding-top:20px}
+.rule2{border-top:2px solid var(--ink);padding-top:20px}
+.rule-amber{border-top:2px solid var(--amber);padding-top:20px}
+.rule-red{border-top:2px solid var(--red);padding-top:20px}
+.rule-blue{border-top:2px solid var(--blue);padding-top:20px}
+.panel{background:var(--panel);padding:24px}
+
+/* ---- tables: typography, not spreadsheet ---- */
+table{border-collapse:collapse;width:100%;font-size:var(--t-cap)}
+th{font-size:22px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--sec);text-align:left;
+  vertical-align:bottom;padding:8px 12px;border-bottom:2px solid var(--ink)}
+td{padding:6px 12px;border-bottom:1px solid var(--rule);line-height:1.25;vertical-align:top}
+th.n,td.n{text-align:right;white-space:nowrap}
+/* a text column after a right-aligned number column starts 40 px after the numbers, not 24 */
+th.n+th:not(.n),td.n+td:not(.n){padding-left:28px}
+/* tabular figures only in numeric cells: Inter's tnum also widens hyphens ("top-1" -> "top - 1") */
+td.n{font-variant-numeric:tabular-nums}
+tr.total td{font-weight:600;border-top:2px solid var(--ink)}
+tr.focus td{background:#EEF2FE}
+tr.bad td.lab,td.bad{color:var(--red);font-weight:600}
+td.good{color:var(--green);font-weight:600}
+tr.amber{color:inherit}             /* the .amber utility would otherwise colour every cell of the row */
+tr.amber td.lab,td.amber{color:var(--amber);font-weight:600}
+table.lg{font-size:var(--t-sec)}
+
+/* ---- figures ---- */
+img{display:block;object-fit:contain}
+.fig{display:flex;flex-direction:column;gap:12px}
+
+/* ---- pipeline / architecture: flat nodes, thin arrows ---- */
+.flow{display:flex;flex-direction:row;align-items:stretch;gap:0}
+.node{flex:1;border-top:2px solid var(--ink);padding:20px 0 0 0;display:flex;flex-direction:column;gap:10px}
+.node.blue{border-top-color:var(--blue)} .node.red{border-top-color:var(--red)}
+.arrow{width:64px;position:relative;flex:none}
+.arrow::before{content:'';position:absolute;left:12px;right:16px;top:44px;border-top:2px solid var(--ink)}
+.arrow::after{content:'';position:absolute;right:8px;top:37px;border-left:14px solid var(--ink);
+  border-top:8px solid transparent;border-bottom:8px solid transparent}
+
+/* ---- math, typeset at build time by scripts/mathsvg.py into em-sized, baseline-aligned SVG ---- */
+.math{white-space:nowrap}                         /* inline: <span class="math">TeX</span> */
+.math svg{display:inline-block;overflow:visible}
+.math-display{font-size:var(--t-eq);line-height:1} /* display: <div class="math-display">TeX</div> */
+.math-display svg{display:block;overflow:visible}
+
+/* ---- footer and notes (footer inserted by scripts/deck.py: page number, optional label) ---- */
+.foot{position:absolute;left:88px;right:88px;bottom:48px;display:flex;justify-content:space-between;
+  font-size:var(--t-meta);color:var(--sec)}
+.foot-num{margin-left:auto}
+aside.notes{display:none}
+
+/* ---- print / PDF: one slide per page, no scaling ---- */
+@page{size:1920px 1080px;margin:0}
+@media print{
+  body{background:#FFFFFF}
+  .slide{transform:none !important;margin:0 !important;break-after:page;page-break-after:always}
+}
+
+.slide:last-of-type{break-after:auto;page-break-after:auto}
+</style></head>
+<body>
+<div class="slide">
+<section class="cover" data-nofooter>
+  <div class="row fill" style="align-items:center">
+    <div class="c6 stack" style="gap:32px">
+      <p class="kicker">80-scene run</p>
+      <h1>Scenarios in the <span style="white-space:nowrap">80-scene</span> run</h1>
+      <p class="lead">What each scenario tests, and how conformal prediction handles it</p>
+      <p class="cap rule2">80 scenes · 1,296 instructions · 7 camera sets · scored before and after a wrist look</p>
+    </div>
+    <img class="c6" style="height:645px" src="assets/scene-top.png" alt="One scene from the top camera, with spot numerals 1 to 4">
+  </div>
+  <aside class="notes">Every trial is one scene × one instruction × one set of cameras, scored twice: with the external cameras only, and again after a wrist look. Source document: 80-run-unique-scenario.md; numbers computed by scenarios.py (output scenarios.json).</aside>
+</section>
+</div>
+<div class="slide">
+<section>
+  <div class="head"><p class="kicker">Setup</p><h2>Each split calibrates on 18 scenes and tests on 19</h2></div>
+  <div class="row">
+    <div class="c6 rule2 stack" style="gap:20px">
+      <p class="kicker">Calibration · 18 scenes</p>
+      <p>Only full-name and absent-box instructions in normal light, one row per scene: <b>18 rows</b> for Global CP, <b>54</b> for the <span style="white-space:nowrap">per-count</span> threshold (18&nbsp;per blocked count).</p>
+      <p>Output: the threshold. With 18 rows at ε&nbsp;=&nbsp;0.10 it is the largest calibration score, so it swings between splits: <b>0.444 to 0.997</b> for Global CP.</p>
+    </div>
+    <div class="c6 rule2 stack" style="gap:20px">
+      <p class="kicker">Test · 19 scenes</p>
+      <p>Every instruction type and camera set: <b>2,261 decisions</b> per split. Scenes kept out of the split (holdout, duplicate box, physical check, fit, dim, back-light) get the same thresholds.</p>
+      <p>Output: coverage, set size, actions, wrong grasps. All results in this deck are test results, averaged over <b>20 random splits</b>.</p>
+    </div>
+  </div>
+  <p class="cap">37 of the 80 scenes can calibrate or test. Every trial was scored once without and once with the wrist image; each context gets its own threshold.</p>
+  <aside class="notes">Test population: the test half of each split, i.e. scenes from the standard and absent-box pools, normal light, no holdout scenes, all instruction types. 2,261 is the "all" row's n in the instruction-type table of 80-run-unique-scenario.md.</aside>
+<div class="foot"><span class="foot-num">02 / 15</span></div>
+</section>
+</div>
+<div class="slide">
+<section>
+  <div class="head"><p class="kicker">How to read the tables</p><h2>Eight numbers per scenario</h2></div>
+  <table class="lg">
+    <tr><th style="width:24%">column</th><th>meaning</th></tr>
+    <tr><td><b>top-1</b></td><td>share where the model's most probable label is right; no threshold involved</td></tr>
+    <tr><td><b>coverage</b></td><td>share where the right label is in the set (target 0.90 at ε&nbsp;=&nbsp;0.10, 0.80 at ε&nbsp;=&nbsp;0.20)</td></tr>
+    <tr><td><b>set</b></td><td>mean labels in the set, out of 5: spots <span style="white-space:nowrap">1–4</span> and N for “none”</td></tr>
+    <tr><td><b>act · ask · abstain</b></td><td>share of decisions: one box → act, two or more labels → ask, {N} or empty → abstain</td></tr>
+    <tr><td><b>wrong grasp</b></td><td>share of all decisions that grasp a box other than the intended one</td></tr>
+    <tr><td><b>look first</b></td><td>share the decision policy would send to a wrist look as its first move</td></tr>
+  </table>
+  <p class="cap">Defaults: Global CP (one threshold), ε&nbsp;=&nbsp;0.10, before the look, test scenes, mean of 20 splits. For a missing box the right label is N; for a vague instruction it is the box the speaker meant.</p>
+  <aside class="notes">Wrong grasp, in full: for a missing box, any grasp counts as wrong. The source tables also carry n (test decisions per split, mean over 20 splits); the slides drop it as a column and keep it here and in the source.</aside>
+<div class="foot"><span class="foot-num">03 / 15</span></div>
+</section>
+</div>
+<div class="slide">
+<section>
+  <div class="head"><p class="kicker">01 · Instruction types</p><h2>Ten kinds of instruction</h2></div>
+  <table>
+    <tr><th style="width:17%">scenario</th><th style="width:41%">example</th><th style="width:22%">right answer</th><th style="width:20%">intended first move</th></tr>
+    <tr class="bad"><td class="lab">absent box</td><td>“Grasp the small red box”, box removed</td><td>none (N)</td><td>look, then abstain</td></tr>
+    <tr><td>no green box</td><td>“Grasp the green box”, no green box</td><td>none (N)</td><td>look, then abstain</td></tr>
+    <tr><td>no small green box</td><td>“Grasp the small green box”</td><td>none (N)</td><td>look, then abstain</td></tr>
+    <tr><td>full name</td><td>“Grasp the small blue box”</td><td>the box named</td><td>act; look if hidden</td></tr>
+    <tr><td>size only</td><td>“Grasp the small box”</td><td>meant box (2 match)</td><td>ask</td></tr>
+    <tr><td>colour only</td><td>“Grasp the red box”</td><td>meant box (2 match)</td><td>ask</td></tr>
+    <tr><td>the box</td><td>“Grasp the box”</td><td>meant box (4 match)</td><td>ask</td></tr>
+    <tr><td>next to</td><td>“Grasp the box next to the big blue box”</td><td>meant box (2 touch)</td><td>ask</td></tr>
+    <tr><td>left of, robot side</td><td>“Grasp the box left of the small red box”</td><td>one box</td><td>as full name</td></tr>
+    <tr><td>left of, other side</td><td>the same sentence</td><td>the speaker's left</td><td>ask</td></tr>
+  </table>
+  <p class="cap">“Left of”, “right of” and “in front of” are read in the speaker's frame. Robot side: the speaker stands beside the robot, so both frames agree.</p>
+  <aside class="notes">The source report codes these kinds L0–L4: L0 names a box that is not on the table (absent box, no green box, no small green box), L1 names one box fully (full name), L2 and L3 match two or four boxes (size only, colour only; the box), L4 refers to a box through another one (next to; left of). The face uses the plain names only. For “left of, other side”, the right answer is the box on the speaker's left, a side no image shows.</aside>
+<div class="foot"><span class="foot-num">04 / 15</span></div>
+</section>
+</div>
+<div class="slide">
+<section>
+  <div class="head"><p class="kicker">01 · Instruction types · <span class="nocase">ε</span> = 0.10</p><h2>Full-name instructions are the only ones worth acting on</h2></div>
+  <table>
+    <tr><th style="width:17%">scenario</th><th class="n">top-1</th><th class="n">coverage</th><th class="n">set</th><th class="n">act</th><th class="n">ask</th><th class="n">abstain</th><th class="n">wrong grasp</th><th class="n">look first</th></tr>
+    <tr class="bad"><td class="lab">absent box</td><td class="n">0.011</td><td class="n bad">0.401</td><td class="n">3.48</td><td class="n">25.6%</td><td class="n">73.9%</td><td class="n">0.4%</td><td class="n bad">25.6%</td><td class="n">71.0%</td></tr>
+    <tr><td>no green box</td><td class="n">0.978</td><td class="n">0.994</td><td class="n">3.88</td><td class="n">0.1%</td><td class="n">82.5%</td><td class="n">17.4%</td><td class="n">0.1%</td><td class="n">99.9%</td></tr>
+    <tr><td>no small green box</td><td class="n">0.989</td><td class="n">0.997</td><td class="n">3.34</td><td class="n">0.0%</td><td class="n">77.1%</td><td class="n">22.9%</td><td class="n">0.0%</td><td class="n">100.0%</td></tr>
+    <tr><td><b>full name</b></td><td class="n"><b>0.851</b></td><td class="n">0.979</td><td class="n">3.46</td><td class="n">19.2%</td><td class="n">80.2%</td><td class="n">0.6%</td><td class="n">1.5%</td><td class="n">75.4%</td></tr>
+    <tr><td>size only</td><td class="n">0.502</td><td class="n">0.933</td><td class="n">3.92</td><td class="n">8.1%</td><td class="n">89.3%</td><td class="n">2.7%</td><td class="n">2.9%</td><td class="n">81.1%</td></tr>
+    <tr><td>colour only</td><td class="n">0.480</td><td class="n">0.927</td><td class="n">3.49</td><td class="n">13.6%</td><td class="n">85.5%</td><td class="n">0.9%</td><td class="n">6.3%</td><td class="n">68.4%</td></tr>
+    <tr><td>the box</td><td class="n">0.245</td><td class="n">0.880</td><td class="n">4.26</td><td class="n">6.2%</td><td class="n">89.8%</td><td class="n">4.1%</td><td class="n">4.4%</td><td class="n">81.7%</td></tr>
+    <tr><td>next to</td><td class="n">0.469</td><td class="n">0.920</td><td class="n">3.92</td><td class="n">5.2%</td><td class="n">91.0%</td><td class="n">3.8%</td><td class="n">2.3%</td><td class="n">83.7%</td></tr>
+    <tr><td>left of, robot side</td><td class="n">0.476</td><td class="n">0.912</td><td class="n">3.84</td><td class="n">8.9%</td><td class="n">88.6%</td><td class="n">2.5%</td><td class="n">3.1%</td><td class="n">86.0%</td></tr>
+    <tr><td>left of, other side</td><td class="n">0.394</td><td class="n">0.895</td><td class="n">3.91</td><td class="n">8.3%</td><td class="n">88.9%</td><td class="n">2.9%</td><td class="n">4.2%</td><td class="n">86.8%</td></tr>
+    <tr class="total"><td>all</td><td class="n">0.587</td><td class="n">0.930</td><td class="n">3.74</td><td class="n">10.1%</td><td class="n">85.6%</td><td class="n">4.3%</td><td class="n">3.3%</td><td class="n">82.1%</td></tr>
+  </table>
+  <aside class="notes">Source: 80-run-unique-scenario.md §1, "Results, ε = 0.10". Test decisions per split (n), in row order: 30, 133, 133, 502, 266, 266, 133, 266, 122, 410; all 2261. The ε = 0.20 and after-the-look versions of this table stay in the source; slides 7 and 8 carry their findings.</aside>
+<div class="foot"><span class="foot-num">05 / 15</span></div>
+</section>
+</div>
+<div class="slide">
+<section>
+  <div class="head"><p class="kicker">01 · Instruction types · finding</p><h2>A missing box is the most dangerous case</h2></div>
+  <div class="row">
+    <div class="c5 stack">
+      <div class="fig"><p class="big red" style="font-size:160px;letter-spacing:-4px">25.6%</p><p class="s">of decisions grasp some other box when the named box is missing (ε&nbsp;=&nbsp;0.10)</p></div>
+      <div class="fig"><p class="big red" style="font-size:160px;letter-spacing:-4px">84.9%</p><p class="s">at ε&nbsp;=&nbsp;0.20</p></div>
+    </div>
+    <div class="c7 stack">
+      <p class="rule">The right answer, N, is in the set only <b>40.1%</b> of the time. N is the model's top answer 1.1% of the time before the look and <b>0.0%</b> after it.</p>
+      <p class="rule">The average for missing-box instructions looks fine, 0.956, because 266 of its 296 test rows per split are “green” sentences, which the model handles (0.994, 0.997).</p>
+      <p class="rule">The robot asks on 73.9% of them, about sets of 3.48 labels that usually leave out “none”.</p>
+    </div>
+  </div>
+  <aside class="notes">Source: 80-run-unique-scenario.md §1, "What it shows". At ε = 0.20 coverage for the absent box falls to 0.046 with sets of 1.35 labels. The 0.956 average is the L0 coverage reported earlier for all missing-box instructions together.</aside>
+<div class="foot"><span class="foot-num">06 / 15</span></div>
+</section>
+</div>
+<div class="slide">
+<section>
+  <div class="head"><p class="kicker">01 · Instruction types · finding</p><h2>For vague instructions, loosening ε is unsafe</h2></div>
+  <div class="row">
+    <div class="c4 stack">
+      <p>At ε&nbsp;=&nbsp;0.10 the robot asks <span style="white-space:nowrap">86–91%</span> of the time on vague instructions, which is the intended move.</p>
+      <p class="rule">At ε&nbsp;=&nbsp;0.20 it grasps <span style="white-space:nowrap">40–62%</span> of the time on them, and <span style="white-space:nowrap">21–31%</span> of all their decisions grasp the wrong box.</p>
+      <p class="rule">For “the box”, top-1 is 0.245: chance with four candidates.</p>
+    </div>
+    <img class="c8" style="height:704px" src="assets/chart_wrong_by_instruction.png" alt="Wrong grasps by instruction type at epsilon 0.10 and 0.20">
+  </div>
+  <aside class="notes">Ranges come from the six vague rows (size only through left of, other side; L2–L4 in the source) of the ε = 0.20 table in 80-run-unique-scenario.md §1 (act 40.0–62.2%, wrong grasp 20.7–31.0%). Chart: ε = 0.10 open circles, ε = 0.20 filled; the absent-box row is red because it is the failure case.</aside>
+<div class="foot"><span class="foot-num">07 / 15</span></div>
+</section>
+</div>
+<div class="slide">
+<section>
+  <div class="head"><p class="kicker">01 · Instruction types · finding</p><h2>The look helps only where the image holds the answer</h2></div>
+  <div class="row">
+    <div class="c4 stack">
+      <p><b>Left of, robot side</b>: 0.476&nbsp;→&nbsp;0.719. <b>Full&nbsp;name</b>:&nbsp;0.851&nbsp;→&nbsp;0.931.</p>
+      <p class="rule"><b>Left of, other side</b>: 0.394&nbsp;→&nbsp;0.381. No image shows where the speaker stands.</p>
+      <p class="rule"><b>Absent box</b>: 0.011&nbsp;→&nbsp;<span class="red">0.000</span>.</p>
+    </div>
+    <img class="c8" style="height:704px" src="assets/chart_look_by_instruction.png" alt="Top-1 accuracy before and after the wrist look, by instruction type">
+  </div>
+  <aside class="notes">Top-1 before vs after the wrist look, ε-independent (no threshold). Source: 80-run-unique-scenario.md §1, "After the wrist look, ε = 0.10".</aside>
+<div class="foot"><span class="foot-num">08 / 15</span></div>
+</section>
+</div>
+<div class="slide">
+<section>
+  <div class="head"><p class="kicker">02 · Camera sets</p><h2>Seven camera sets, blocked in software</h2></div>
+  <table>
+    <tr><th style="width:20%">cameras</th><th style="width:10%">blocked</th><th style="width:70%">what the model sees</th></tr>
+    <tr><td>top + left + right</td><td>0</td><td>everything the fixed cameras see</td></tr>
+    <tr><td>top + left</td><td>1</td><td>top view and one side view</td></tr>
+    <tr><td>top + right</td><td>1</td><td>top view and the other side view</td></tr>
+    <tr><td>left + right</td><td>1</td><td>both side views, no top view</td></tr>
+    <tr class="bad"><td class="lab">top only</td><td>2</td><td>colour and position; big and small look alike from above, and one box's top carries a sticker</td></tr>
+    <tr><td>left only</td><td>2</td><td>one side view: colour and size</td></tr>
+    <tr><td>right only</td><td>2</td><td>the other side view: colour and size</td></tr>
+    <tr><td>none</td><td>3</td><td>no image: handled by rule (all four boxes, then look), not run</td></tr>
+  </table>
+  <p class="cap">Blocking a camera means leaving its image out of the prompt. Every scene appears in all seven sets.</p>
+  <aside class="notes">Source: 80-run-unique-scenario.md §2. The no-camera case is a rule of the decision policy, not a measured condition.</aside>
+<div class="foot"><span class="foot-num">09 / 15</span></div>
+</section>
+</div>
+<div class="slide">
+<section>
+  <div class="head"><p class="kicker">02 · Camera sets · <span class="nocase">ε</span> = 0.10</p><h2>The top camera alone is the weakest view</h2></div>
+  <table>
+    <tr><th style="border-bottom:none"></th><th style="border-bottom:none"></th><th colspan="5" style="text-align:center;border-bottom:1px solid var(--rule)">Global CP</th><th colspan="4" class="blue" style="text-align:center;border-bottom:1px solid var(--rule)">per count</th></tr>
+    <tr><th style="width:17%">cameras</th><th class="n">top-1</th><th class="n">coverage</th><th class="n">set</th><th class="n">act</th><th class="n">wrong</th><th class="n">look first</th><th class="n">coverage</th><th class="n">set</th><th class="n">act</th><th class="n">wrong</th></tr>
+    <tr><td>top + left + right</td><td class="n">0.592</td><td class="n">0.936</td><td class="n">3.98</td><td class="n">7.7%</td><td class="n">2.5%</td><td class="n">64.5%</td><td class="n">0.913</td><td class="n">3.77</td><td class="n">15.5%</td><td class="n">6.5%</td></tr>
+    <tr><td>top + left</td><td class="n">0.570</td><td class="n">0.930</td><td class="n">3.83</td><td class="n">8.8%</td><td class="n">3.0%</td><td class="n">87.2%</td><td class="n">0.968</td><td class="n">3.94</td><td class="n">5.7%</td><td class="n">1.6%</td></tr>
+    <tr><td>top + right</td><td class="n">0.578</td><td class="n">0.934</td><td class="n">3.83</td><td class="n">8.7%</td><td class="n">2.9%</td><td class="n">87.3%</td><td class="n">0.971</td><td class="n">3.95</td><td class="n">5.2%</td><td class="n">1.3%</td></tr>
+    <tr><td>left + right</td><td class="n">0.602</td><td class="n">0.939</td><td class="n">3.92</td><td class="n">8.5%</td><td class="n">2.3%</td><td class="n">87.8%</td><td class="n">0.974</td><td class="n">4.03</td><td class="n">5.3%</td><td class="n">1.2%</td></tr>
+    <tr class="bad"><td class="lab">top only</td><td class="n bad">0.497</td><td class="n">0.908</td><td class="n">3.53</td><td class="n">10.3%</td><td class="n bad">4.6%</td><td class="n">84.8%</td><td class="n">0.964</td><td class="n">3.97</td><td class="n">4.1%</td><td class="n">1.8%</td></tr>
+    <tr><td>left only</td><td class="n">0.639</td><td class="n">0.928</td><td class="n">3.53</td><td class="n">13.4%</td><td class="n">3.8%</td><td class="n">81.2%</td><td class="n">0.973</td><td class="n">3.94</td><td class="n">6.0%</td><td class="n">1.2%</td></tr>
+    <tr><td>right only</td><td class="n">0.631</td><td class="n">0.933</td><td class="n">3.56</td><td class="n">13.5%</td><td class="n">3.7%</td><td class="n">81.4%</td><td class="n">0.977</td><td class="n">3.98</td><td class="n">5.8%</td><td class="n">0.7%</td></tr>
+  </table>
+  <p class="cap">All instruction types. “Per count” is one threshold per number of blocked cameras. Adding the top camera to side views lowers top-1 in every pairing.</p>
+  <aside class="notes">Source: 80-run-unique-scenario.md §2, "Results, ε = 0.10, all instruction types"; n = 323 per camera set. Caveat: these rows cover all instruction types; results restricted to the calibrated instructions (full name and absent box) show higher coverage. The ε = 0.20 table stays in the source.</aside>
+<div class="foot"><span class="foot-num">10 / 15</span></div>
+</section>
+</div>
+<div class="slide">
+<section>
+  <div class="head"><p class="kicker">02 · Camera sets · finding</p><h2>The look repairs the top camera</h2></div>
+  <div class="row">
+    <div class="c4 stack">
+      <p>Top only: top-1 <b>0.497&nbsp;→&nbsp;0.617</b> after the look, the largest gain; all sets then sit at <span style="white-space:nowrap">0.617–0.648.</span></p>
+      <p class="rule">At ε&nbsp;=&nbsp;0.20 without a look, top only grasps the wrong box in <span class="red">25.0%</span> of decisions; a <span style="white-space:nowrap">per-count</span> threshold cuts that to 13.3% by grasping less.</p>
+    </div>
+    <img class="c8" style="height:704px" src="assets/chart_look_by_camera.png" alt="Top-1 accuracy before and after the wrist look, by camera set">
+  </div>
+  <aside class="notes">Source: 80-run-unique-scenario.md §2. Per count at ε = 0.20, top only grasps 28.3% of the time against 49.7% under Global CP; it does the same for left only and right only, which did not need it.</aside>
+<div class="foot"><span class="foot-num">11 / 15</span></div>
+</section>
+</div>
+<div class="slide">
+<section>
+  <div class="head"><p class="kicker">03 · Before vs after the look</p><h2>The look raises accuracy, grasps and wrong grasps</h2></div>
+  <table class="lg">
+    <tr><th style="width:24%"></th><th class="n">top-1</th><th class="n">coverage</th><th class="n">set</th><th class="n">act</th><th class="n">ask</th><th class="n">abstain</th><th class="n">wrong grasp</th></tr>
+    <tr><td>Global, before</td><td class="n">0.587</td><td class="n">0.930</td><td class="n">3.74</td><td class="n">10.1%</td><td class="n">85.6%</td><td class="n">4.3%</td><td class="n">3.3%</td></tr>
+    <tr><td>Global, after</td><td class="n"><b>0.631</b></td><td class="n">0.908</td><td class="n">3.66</td><td class="n">16.3%</td><td class="n">78.0%</td><td class="n">5.6%</td><td class="n">5.6%</td></tr>
+    <tr class="focus"><td class="blue">per count, before</td><td class="n">0.587</td><td class="n">0.963</td><td class="n">3.94</td><td class="n">6.8%</td><td class="n">91.4%</td><td class="n">1.8%</td><td class="n">2.0%</td></tr>
+    <tr class="focus"><td class="blue">per count, after</td><td class="n"><b>0.631</b></td><td class="n">0.910</td><td class="n">3.62</td><td class="n">13.5%</td><td class="n">79.5%</td><td class="n">7.0%</td><td class="n">4.2%</td></tr>
+  </table>
+  <p class="cap">“After the look” means every trial was scored again with the wrist image added, under its own threshold. No rule decided to look. ε&nbsp;=&nbsp;0.10.</p>
+  <aside class="notes">Source: 80-run-unique-scenario.md §3. Post-look scores use temperature T = 4.5, with a threshold calibrated on post-look scores.</aside>
+<div class="foot"><span class="foot-num">12 / 15</span></div>
+</section>
+</div>
+<div class="slide">
+<section>
+  <div class="head"><p class="kicker">04 · Scene pools</p><h2>Eight kinds of scene</h2></div>
+  <table>
+    <tr><th style="width:17%">pool</th><th style="width:14%">scenes</th><th style="width:43%">what it is</th><th style="width:26%">role</th></tr>
+    <tr><td>standard</td><td>32 (27 used)</td><td>standard scenes, all four boxes</td><td>calibrate and test</td></tr>
+    <tr><td>absent box</td><td>12 (10 used)</td><td>one box removed</td><td>calibrate and test</td></tr>
+    <tr><td>holdout</td><td>6 evaluated</td><td>arrangements never used for calibration</td><td>test only</td></tr>
+    <tr><td>duplicate box</td><td>8</td><td>two identical boxes; no “the box”, “next&nbsp;to” or “left&nbsp;of” instructions</td><td>descriptive</td></tr>
+    <tr><td>physical check</td><td>4</td><td>reserved for a camera-cover check; no cover used</td><td>descriptive</td></tr>
+    <tr><td>fit</td><td>8</td><td>used only to fit the temperature</td><td>descriptive</td></tr>
+    <tr class="amber"><td class="lab">dim / back-light</td><td>8 / 8</td><td>lighting conditions cancelled by auto-exposure</td><td>not a lighting result</td></tr>
+  </table>
+  <p class="cap">One holdout scene is excluded: its scene card contradicts the photos.</p>
+  <aside class="notes">Source: 80-run-unique-scenario.md §4. Holdout: 7 scenes, 6 evaluated. Duplicate-box scenes hold an ambiguity no camera can resolve. Amber marks a caveat: the dim and back-light rows read as more ordinary scenes, not as a lighting result.</aside>
+<div class="foot"><span class="foot-num">13 / 15</span></div>
+</section>
+</div>
+<div class="slide">
+<section>
+  <div class="head"><p class="kicker">04 · Scene pools · <span class="nocase">ε</span> = 0.10 and 0.20</p><h2>Holdout scenes cover slightly less</h2></div>
+  <table>
+    <tr><th style="width:20%">pool</th><th class="n">top-1</th><th class="n">coverage</th><th class="n">set</th><th class="n">act</th><th class="n">wrong grasp</th><th class="n"><span class="nocase">ε</span> 0.20 coverage</th><th class="n"><span class="nocase">ε</span> 0.20 wrong</th></tr>
+    <tr><td>standard</td><td class="n">0.561</td><td class="n">0.932</td><td class="n">3.76</td><td class="n">9.0%</td><td class="n">3.1%</td><td class="n">0.673</td><td class="n">20.0%</td></tr>
+    <tr><td>absent box</td><td class="n">0.675</td><td class="n">0.920</td><td class="n">3.67</td><td class="n">13.5%</td><td class="n">3.8%</td><td class="n">0.739</td><td class="n">18.2%</td></tr>
+    <tr class="bad"><td class="lab">holdout</td><td class="n">0.528</td><td class="n">0.918</td><td class="n">3.77</td><td class="n">9.8%</td><td class="n">3.8%</td><td class="n">0.645</td><td class="n">23.1%</td></tr>
+    <tr><td>duplicate box</td><td class="n">0.704</td><td class="n">0.956</td><td class="n">3.60</td><td class="n">13.5%</td><td class="n">2.2%</td><td class="n">0.791</td><td class="n">12.9%</td></tr>
+    <tr><td>physical check</td><td class="n">0.618</td><td class="n">0.943</td><td class="n">3.80</td><td class="n">8.9%</td><td class="n">2.3%</td><td class="n">0.719</td><td class="n">16.3%</td></tr>
+    <tr><td>fit</td><td class="n">0.565</td><td class="n">0.935</td><td class="n">3.80</td><td class="n">8.6%</td><td class="n">3.0%</td><td class="n">0.678</td><td class="n">20.7%</td></tr>
+    <tr><td>dim</td><td class="n">0.585</td><td class="n">0.938</td><td class="n">3.82</td><td class="n">8.7%</td><td class="n">2.8%</td><td class="n">0.693</td><td class="n">18.8%</td></tr>
+    <tr><td>back-light</td><td class="n">0.559</td><td class="n">0.927</td><td class="n">3.78</td><td class="n">9.4%</td><td class="n">3.4%</td><td class="n">0.660</td><td class="n">21.3%</td></tr>
+  </table>
+  <p class="cap">Pools differ in instruction mix: duplicate-box scenes carry no “the box”, “next&nbsp;to” or “left&nbsp;of” instructions, and absent-box scenes have one distractor fewer. Dim and back-light match normal light because the change never reached the images.</p>
+  <aside class="notes">Source: 80-run-unique-scenario.md §4. n per pool: 1749, 512, 714, 504, 476, 952, 952, 952. For pools outside the split (holdout, duplicate box, physical check, fit, dim, back-light), n counts all their trials, which see a new threshold in each split.</aside>
+<div class="foot"><span class="foot-num">14 / 15</span></div>
+</section>
+</div>
+<div class="slide">
+<section>
+  <div class="head"><p class="kicker">Summary</p><h2>Act on full names; a missing box is the worst case</h2></div>
+  <div class="row">
+    <div class="c8 stack">
+      <div class="row rule"><p class="num ter c1">1</p><p class="c7">Full-name instructions are the only ones where grasping pays: top-1 0.851, wrong grasps&nbsp;1.5%.</p></div>
+      <div class="row rule"><p class="num ter c1">2</p><p class="c7">A missing box is the most dangerous case: 25.6% wrong grasps at ε&nbsp;=&nbsp;0.10, 84.9% at ε&nbsp;=&nbsp;0.20.</p></div>
+      <div class="row rule"><p class="num ter c1">3</p><p class="c7">Vague instructions should be asked about; loosening ε turns them into <span style="white-space:nowrap">21–31%</span> wrong grasps.</p></div>
+      <div class="row rule"><p class="num ter c1">4</p><p class="c7">The top camera alone is the weakest view, and the wrist look repairs it (0.497&nbsp;→&nbsp;0.617).</p></div>
+    </div>
+    <div class="c4 panel stack">
+      <p class="kicker">Next steps</p>
+      <ul class="dash">
+        <li class="s">Find why the sets for an absent box lack “none”.</li>
+        <li class="s">Rerun the lighting pools with auto-exposure&nbsp;off.</li>
+        <li class="s">Correct the card of the excluded holdout scene.</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">Each statement restates one finding slide, in the order shown: 5, 6, 7, 11. Next steps come from the deck itself: the first from slide 6 (sets of 3.48 labels that usually leave out “none”), the second from slides 13 and 14 (auto-exposure cancelled the lighting change, so dim and back-light say nothing about lighting), the third from slide 13 (one holdout scene is excluded because its scene card contradicts the photos).</aside>
+<div class="foot"><span class="foot-num">15 / 15</span></div>
+</section>
+</div>
+<script>
+function fit(){const s=Math.min(1,(window.innerWidth-16)/1920);
+document.querySelectorAll('.slide').forEach(d=>{d.style.transform='scale('+s+')';
+d.style.marginBottom=(24-1080*(1-s))+'px';});}
+window.addEventListener('resize',fit);fit();
+</script>
+</body></html>

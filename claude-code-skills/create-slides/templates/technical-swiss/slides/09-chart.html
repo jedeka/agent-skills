@@ -1,0 +1,33 @@
+<!--
+  09 chart / results (design spec §13).
+  Use: a result whose shape matters (a curve, a trade-off, bars across conditions).
+  Grid: .c7 chart + .c5 reading. Use 8 + 4 (.c8 + .c4) for a wide chart with a short reading.
+  Capacity (864 px content height): chart 16:10 at 1007 x 629, the full .c7 width (axes, units and labels drawn in the
+    chart itself, ≥ 24 px at slide scale); finding ≤ 3 lines at 38 px (≤ 100 characters);
+    2 directly labelled values with a 1-line label (≤ 40 characters at 28 px); setting ≤ 3 lines.
+    Flow ≈ head 113 + 40 + max(chart 629, reading 608) = 782 of 864.
+  Defaults: monochrome chart with one or two semantic accents (blue = focal method, red = below
+    target, green = meets target); no legend when direct labels fit.
+-->
+<section>
+  <div class="head" data-role="heading" data-cap="kicker ≤ 30 chars · title 1 line, ≤ 50 chars">
+    <p class="kicker">[Section label · ≤&nbsp;30 characters]</p>
+    <h2>[Slide title: the result, one line, ≤&nbsp;50 characters]</h2>
+  </div>
+  <div class="row">
+    <div class="c7"><img data-role="chart" data-cap="16:10 at 1007 × 629; its text ≥ 24 px" src="assets/placeholder-chart-16x10.png" alt="[Chart: the result, with axes and units]" style="width:1007px;height:629px"></div>
+    <div class="c5 stack">
+      <p data-role="finding" data-cap="≤ 3 lines, ≤ 100 chars">[Finding: what the chart shows, ≤&nbsp;3 lines, ≤&nbsp;100 characters]</p>
+      <div class="head rule-blue" data-role="focal value" data-cap="a value at 64 px above a 1-line label">
+        <p class="num blue">[0.00]</p>
+        <p class="cap">[Focal method: metric, condition]</p>
+      </div>
+      <div class="head rule" data-role="comparison value" data-cap="a value at 64 px above a 1-line label">
+        <p class="num">[0.00]</p>
+        <p class="cap">[Comparison: baseline, same metric]</p>
+      </div>
+      <p class="meta" data-role="setting" data-cap="≤ 3 lines: data, n, metric, units">[Setting: data, n, metric definition, units, uncertainty, ≤&nbsp;3 lines]</p>
+    </div>
+  </div>
+  <aside class="notes">[Speaker notes, optional: ≤&nbsp;80 words]</aside>
+</section>

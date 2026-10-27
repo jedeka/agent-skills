@@ -1,0 +1,26 @@
+<!--
+  06 full figure (design spec §10).
+  Use: one technically important figure that must be read in detail (a result plot, a
+    qualitative grid, a large diagram).
+  Grid: .c3 compact title and caption + .c9 figure (16:9 at 1302 x 732), both from the top edge.
+    The title is set at body size here so the figure stays the dominant object.
+  Capacity (864 px content height): label ≤ 20 characters; title ≤ 3 lines at 38 px (~20 characters per line,
+    ≤ 55 characters); interpretation ≤ 6 lines at 28 px (~27 characters per line,
+    ≤ 150 characters); setting ≤ 3 lines. Flow ≈ max(left 480, figure 732) = 732 of 864.
+  Defaults: never shrink the figure to make margins; a wider figure (e.g. 2:1) can take .c12 under
+    a one-line .head, at most 1744 x 600.
+-->
+<section>
+  <div class="row">
+    <div class="c3 stack">
+      <div class="head" data-role="heading" data-cap="label ≤ 20 chars · title ≤ 3 lines at 38 px, ≤ 55 chars">
+        <p class="kicker">[Section label]</p>
+        <h2 style="font-size:var(--t-body)">[Slide title: the finding, ≤&nbsp;3 lines, ≤&nbsp;55 characters]</h2>
+      </div>
+      <p class="cap" data-role="interpretation" data-cap="≤ 6 lines at 28 px, ≤ 150 chars">[Interpretation: the one thing to see in the figure and where it is, ≤&nbsp;6 lines, ≤&nbsp;150 characters]</p>
+      <p class="meta" data-role="setting" data-cap="≤ 3 lines: data, n, units">[Setting: data, n, units, ≤&nbsp;3 lines]</p>
+    </div>
+    <div class="c9"><img data-role="figure" data-cap="16:9 at 1302 × 732" src="assets/placeholder-figure-16x9.png" alt="[Figure: the dominant visual object]" style="width:1302px;height:732px"></div>
+  </div>
+  <aside class="notes">[Speaker notes, optional: ≤&nbsp;80 words]</aside>
+</section>

@@ -1,0 +1,18 @@
+<section>
+  <div class="head"><p class="kicker">01 · Instruction types</p><h2>Ten kinds of instruction</h2></div>
+  <table>
+    <tr><th style="width:17%">scenario</th><th style="width:41%">example</th><th style="width:22%">right answer</th><th style="width:20%">intended first move</th></tr>
+    <tr class="bad"><td class="lab">absent box</td><td>“Grasp the small red box”, box removed</td><td>none (N)</td><td>look, then abstain</td></tr>
+    <tr><td>no green box</td><td>“Grasp the green box”, no green box</td><td>none (N)</td><td>look, then abstain</td></tr>
+    <tr><td>no small green box</td><td>“Grasp the small green box”</td><td>none (N)</td><td>look, then abstain</td></tr>
+    <tr><td>full name</td><td>“Grasp the small blue box”</td><td>the box named</td><td>act; look if hidden</td></tr>
+    <tr><td>size only</td><td>“Grasp the small box”</td><td>meant box (2 match)</td><td>ask</td></tr>
+    <tr><td>colour only</td><td>“Grasp the red box”</td><td>meant box (2 match)</td><td>ask</td></tr>
+    <tr><td>the box</td><td>“Grasp the box”</td><td>meant box (4 match)</td><td>ask</td></tr>
+    <tr><td>next to</td><td>“Grasp the box next to the big blue box”</td><td>meant box (2 touch)</td><td>ask</td></tr>
+    <tr><td>left of, robot side</td><td>“Grasp the box left of the small red box”</td><td>one box</td><td>as full name</td></tr>
+    <tr><td>left of, other side</td><td>the same sentence</td><td>the speaker's left</td><td>ask</td></tr>
+  </table>
+  <p class="cap">“Left of”, “right of” and “in front of” are read in the speaker's frame. Robot side: the speaker stands beside the robot, so both frames agree.</p>
+  <aside class="notes">The source report codes these kinds L0–L4: L0 names a box that is not on the table (absent box, no green box, no small green box), L1 names one box fully (full name), L2 and L3 match two or four boxes (size only, colour only; the box), L4 refers to a box through another one (next to; left of). The face uses the plain names only. For “left of, other side”, the right answer is the box on the speaker's left, a side no image shows.</aside>
+</section>

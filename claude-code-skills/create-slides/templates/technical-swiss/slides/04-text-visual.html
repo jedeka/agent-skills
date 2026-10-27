@@ -1,0 +1,34 @@
+<!--
+  04 text + visual (design spec §8).
+  Use: a visual that needs explanation beside it: a mechanism diagram, a plot with a reading
+    guide, an annotated screenshot.
+  Grid: .c5 text + .c7 visual (asymmetric; the larger region holds the important visual). Use 4 + 8
+    (.c4 + .c8) when the text is ≤ 3 short bullets.
+  Capacity (864 px content height): explanation ≤ 3 lines at 38 px (~34 characters per line,
+    ≤ 100 characters); ≤ 3 bullets of ≤ 2 lines at 32 px (≤ 70 characters each); source ≤ 2 lines.
+    Visual 16:9 at 1007 x 566 with a 1-line caption (≤ 60 characters).
+    Flow ≈ head 113 + 40 + max(text 552, visual 616) = 769 of 864.
+  Defaults: text and visual share the same top edge; label inside the visual, not beside it.
+-->
+<section>
+  <div class="head" data-role="heading" data-cap="kicker ≤ 30 chars · title 1 line, ≤ 50 chars">
+    <p class="kicker">[Section label · ≤&nbsp;30 characters]</p>
+    <h2>[Slide title: the finding, one line, ≤&nbsp;50 characters]</h2>
+  </div>
+  <div class="row">
+    <div class="c5 stack">
+      <p data-role="explanation" data-cap="≤ 3 lines, ≤ 100 chars">[Explanation: what the visual shows and why it matters, ≤&nbsp;3 lines, ≤&nbsp;100 characters]</p>
+      <ul class="dash" data-role="points" data-cap="≤ 3 bullets of ≤ 2 lines at 32 px, ≤ 70 chars each">
+        <li class="s">[Point: a label, step or mechanism, ≤&nbsp;2 lines, ≤&nbsp;70 characters]</li>
+        <li class="s">[Point: a label, step or mechanism, ≤&nbsp;2 lines, ≤&nbsp;70 characters]</li>
+        <li class="s">[Point: a label, step or mechanism, ≤&nbsp;2 lines, ≤&nbsp;70 characters]</li>
+      </ul>
+      <p class="meta" data-role="source" data-cap="≤ 2 lines: data, n, units">[Source or setting: data, n, units, ≤&nbsp;2 lines]</p>
+    </div>
+    <div class="c7 fig">
+      <img data-role="visual" data-cap="16:9 at 1007 × 566" src="assets/placeholder-figure-16x9.png" alt="[Visual: the technically important figure]" style="width:1007px;height:566px">
+      <p class="cap" data-role="caption" data-cap="1 line, ≤ 60 chars">[Caption: what to look at, one line, ≤&nbsp;60 characters]</p>
+    </div>
+  </div>
+  <aside class="notes">[Speaker notes, optional: ≤&nbsp;80 words]</aside>
+</section>

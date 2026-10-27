@@ -1,0 +1,150 @@
+/* technical-swiss: the default theme of the create-slides skill.
+   A Swiss-grid layout carrying full technical detail: 1920x1080 canvas (16:9; 1 pt = 2 px),
+   12-column grid, 88 px side margins, 24 px gutters, Inter + JetBrains Mono. Rules and the reasons
+   behind them: references/technical-swiss.md. Every slide is one <section> inside a .slide wrapper
+   that scripts/deck.py adds; the build inserts the footer: the page number, plus a short label only
+   when asked, never a date. data-layer="overlay" on an element marks it as meant to sit on other
+   content (a label on an image); deck.py check and pdfcheck.py then allow that overlap.
+   Kickers (.kicker) and table headers (th) are set in capitals by text-transform, which also
+   capitalises a variable or unit inside them: "n = 18" shows as "N = 18", ms as MS, ε as Ε. Wrap
+   such text in <span class="nocase"> to keep its case.
+   Lists: ul.dash hangs an en dash at the column's left edge and indents the text 1 em, so wrapped
+   lines align under the first; ul.plain has no markers.
+   Table status: td.bad (below target, red), td.good (meets target, green), td.amber (caveat:
+   provisional, small n, not comparable); on a row, tr.bad and tr.amber colour the label cell td.lab.
+   Fonts: Inter and JetBrains Mono, both SIL Open Font License 1.1 (fonts/LICENSES/). */
+
+@font-face{font-family:'Inter';font-weight:400;src:local('Inter'),url('fonts/Inter-400.ttf')}
+@font-face{font-family:'Inter';font-weight:500;src:local('Inter Medium'),url('fonts/Inter-500.ttf')}
+@font-face{font-family:'Inter';font-weight:600;src:local('Inter SemiBold'),url('fonts/Inter-600.ttf')}
+@font-face{font-family:'Inter';font-weight:700;src:local('Inter Bold'),url('fonts/Inter-700.ttf')}
+@font-face{font-family:'JetBrains Mono';font-weight:400;src:local('JetBrains Mono'),url('fonts/JetBrainsMono-400.ttf')}
+@font-face{font-family:'JetBrains Mono';font-weight:600;src:local('JetBrains Mono SemiBold'),url('fonts/JetBrainsMono-600.ttf')}
+
+:root{
+  /* colour: neutrals carry the structure; accents carry one fixed meaning each */
+  --bg:#FFFFFF; --ink:#111111; --sec:#666666; --ter:#929292; --rule:#D9D9D9; --panel:#F4F4F2;
+  --red:#D93838;    /* failure, below target, the dangerous case */
+  --blue:#315EF5;   /* the focal method or condition of the deck */
+  --green:#198754;  /* meets target, passes (use sparingly) */
+  --amber:#C78A00;  /* caveat, limitation, provisional */
+  /* type scale in px on the 1920 canvas (pt x 2) */
+  --t-title:80px;   /* main title, 40 pt */
+  --t-section:104px;/* section title, 52 pt */
+  --t-h2:60px;      /* slide title, 30 pt */
+  --t-stmt:72px;    /* key statement / quote, 36 pt */
+  --t-key:240px;    /* key number */
+  --t-body:38px;    /* body, 19 pt */
+  --t-sec:32px;     /* secondary, 16 pt */
+  --t-cap:28px;     /* caption, table text, 14 pt */
+  --t-meta:24px;    /* labels, footer, 12 pt */
+  --t-eq:48px;      /* equations, 24 pt */
+  --foot-band:80px; /* bottom band that only the footer may enter (deck.py check, pdfcheck.py) */
+}
+
+html,body{margin:0}
+body{background:#E9E9E7;font-family:'Inter',Arial,sans-serif;color:var(--ink)}
+.slide{width:1920px;height:1080px;transform-origin:top left;margin:0 0 24px 0}
+
+section{position:relative;width:1920px;height:1080px;overflow:hidden;box-sizing:border-box;background:var(--bg);
+  padding:80px 88px 136px 88px;display:flex;flex-direction:column;gap:40px;
+  font-family:'Inter',Arial,sans-serif;color:var(--ink)}
+section *{margin:0;box-sizing:border-box}
+/* line breaking: pretty avoids most one-word last lines; headings balance their lines
+   (deck.py check reports any one-word last line that remains, as kind "widow") */
+section{text-wrap:pretty} section h1,section h2{text-wrap:balance}
+section.cover,section.section{padding:96px 88px 96px 88px}
+
+/* ---- type ---- */
+.kicker{font-size:var(--t-meta);font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--sec)}
+h1{font-size:var(--t-title);font-weight:700;line-height:1.05;letter-spacing:-2px}
+h1.section-title{font-size:var(--t-section);letter-spacing:-3px}
+h2{font-size:var(--t-h2);font-weight:600;line-height:1.15;letter-spacing:-1px}
+h3{font-size:var(--t-sec);font-weight:600;line-height:1.3}
+p,li{font-size:var(--t-body);line-height:1.3}
+.lead{font-size:var(--t-body);line-height:1.3;color:var(--sec)}
+.s{font-size:var(--t-sec)} p.s,li.s{font-size:var(--t-sec)}
+.cap{font-size:var(--t-cap);line-height:1.35;color:var(--sec)}
+.meta{font-size:var(--t-meta);line-height:1.35;color:var(--sec)}
+.stmt{font-size:var(--t-stmt);font-weight:600;line-height:1.15;letter-spacing:-1px}
+.big{font-size:var(--t-key);font-weight:700;line-height:1;letter-spacing:-6px;font-variant-numeric:tabular-nums}
+.num{font-size:64px;font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums}
+.eq{font-family:'JetBrains Mono','Courier New',monospace;font-size:var(--t-eq);line-height:1.3}
+code,.mono{font-family:'JetBrains Mono','Courier New',monospace;font-size:0.9em}
+ul.plain{list-style:none;padding:0;display:flex;flex-direction:column;gap:20px}
+/* en-dash list: the dash on the column edge, the text on a 1 em hanging indent */
+ul.dash{list-style:none;padding:0;display:flex;flex-direction:column;gap:16px}
+ul.dash>li{position:relative;padding-left:1em}
+ul.dash>li::before{content:'\2013';position:absolute;left:0;top:0}
+.nocase{text-transform:none}       /* keeps n, ms, kB, ε as written inside a .kicker or th */
+
+/* ---- colour utilities (meaning, never decoration) ---- */
+.sec{color:var(--sec)} .ter{color:var(--ter)}
+.red{color:var(--red)} .blue{color:var(--blue)} .green{color:var(--green)} .amber{color:var(--amber)}
+
+/* ---- layout: 12 columns of 123.33 px with 24 px gutters inside 1744 px ---- */
+.head{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;flex-direction:row;gap:24px;align-items:flex-start}
+.row.stretch{align-items:stretch}
+.stack{display:flex;flex-direction:column;gap:28px}
+.fill{flex:1}
+.grid12{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.c1{width:123px}.c2{width:271px}.c3{width:418px}.c4{width:565px}.c5{width:713px}.c6{width:860px}
+.c7{width:1007px}.c8{width:1155px}.c9{width:1302px}.c10{width:1449px}.c11{width:1597px}.c12{width:1744px}
+.span2{grid-column:span 2}.span3{grid-column:span 3}.span4{grid-column:span 4}.span6{grid-column:span 6}
+.rule{border-top:1px solid var(--rule);padding-top:20px}
+.rule2{border-top:2px solid var(--ink);padding-top:20px}
+.rule-amber{border-top:2px solid var(--amber);padding-top:20px}
+.rule-red{border-top:2px solid var(--red);padding-top:20px}
+.rule-blue{border-top:2px solid var(--blue);padding-top:20px}
+.panel{background:var(--panel);padding:24px}
+
+/* ---- tables: typography, not spreadsheet ---- */
+table{border-collapse:collapse;width:100%;font-size:var(--t-cap)}
+th{font-size:22px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--sec);text-align:left;
+  vertical-align:bottom;padding:8px 12px;border-bottom:2px solid var(--ink)}
+td{padding:6px 12px;border-bottom:1px solid var(--rule);line-height:1.25;vertical-align:top}
+th.n,td.n{text-align:right;white-space:nowrap}
+/* a text column after a right-aligned number column starts 40 px after the numbers, not 24 */
+th.n+th:not(.n),td.n+td:not(.n){padding-left:28px}
+/* tabular figures only in numeric cells: Inter's tnum also widens hyphens ("top-1" -> "top - 1") */
+td.n{font-variant-numeric:tabular-nums}
+tr.total td{font-weight:600;border-top:2px solid var(--ink)}
+tr.focus td{background:#EEF2FE}
+tr.bad td.lab,td.bad{color:var(--red);font-weight:600}
+td.good{color:var(--green);font-weight:600}
+tr.amber{color:inherit}             /* the .amber utility would otherwise colour every cell of the row */
+tr.amber td.lab,td.amber{color:var(--amber);font-weight:600}
+table.lg{font-size:var(--t-sec)}
+
+/* ---- figures ---- */
+img{display:block;object-fit:contain}
+.fig{display:flex;flex-direction:column;gap:12px}
+
+/* ---- pipeline / architecture: flat nodes, thin arrows ---- */
+.flow{display:flex;flex-direction:row;align-items:stretch;gap:0}
+.node{flex:1;border-top:2px solid var(--ink);padding:20px 0 0 0;display:flex;flex-direction:column;gap:10px}
+.node.blue{border-top-color:var(--blue)} .node.red{border-top-color:var(--red)}
+.arrow{width:64px;position:relative;flex:none}
+.arrow::before{content:'';position:absolute;left:12px;right:16px;top:44px;border-top:2px solid var(--ink)}
+.arrow::after{content:'';position:absolute;right:8px;top:37px;border-left:14px solid var(--ink);
+  border-top:8px solid transparent;border-bottom:8px solid transparent}
+
+/* ---- math, typeset at build time by scripts/mathsvg.py into em-sized, baseline-aligned SVG ---- */
+.math{white-space:nowrap}                         /* inline: <span class="math">TeX</span> */
+.math svg{display:inline-block;overflow:visible}
+.math-display{font-size:var(--t-eq);line-height:1} /* display: <div class="math-display">TeX</div> */
+.math-display svg{display:block;overflow:visible}
+
+/* ---- footer and notes (footer inserted by scripts/deck.py: page number, optional label) ---- */
+.foot{position:absolute;left:88px;right:88px;bottom:48px;display:flex;justify-content:space-between;
+  font-size:var(--t-meta);color:var(--sec)}
+.foot-num{margin-left:auto}
+aside.notes{display:none}
+
+/* ---- print / PDF: one slide per page, no scaling ---- */
+@page{size:1920px 1080px;margin:0}
+@media print{
+  body{background:#FFFFFF}
+  .slide{transform:none !important;margin:0 !important;break-after:page;page-break-after:always}
+}

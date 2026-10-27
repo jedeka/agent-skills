@@ -1,0 +1,34 @@
+<!--
+  16 summary / closing (design spec §20).
+  Use: the last content slide: what the deck established and what comes next. No new evidence.
+  Grid: .c8 numbered statements (.c1 number + .c7 text) + .c4 next-steps panel. The title is the
+    final, largest statement.
+  Capacity (864 px content height): title 1 line (≤ 50 characters); 3–4 statements of ≤ 2 lines
+    at 38 px (~48 characters per line, ≤ 90 characters); ≤ 3 next steps of ≤ 2 lines at 32 px
+    (~27 characters per line, ≤ 50 characters).
+    Flow ≈ head 113 + 40 + 4 x 119 + 3 x 28 = 713 of 864 (566 with 3 statements).
+  Defaults: statements restate findings already shown; next steps are actions, not hopes; no
+    names or dates on the steps unless the user asks.
+-->
+<section>
+  <div class="head" data-role="heading" data-cap="kicker · closing title 1 line, ≤ 50 chars">
+    <p class="kicker">[Summary]</p>
+    <h2>[Closing title: the deck's one-line takeaway, ≤&nbsp;50 characters]</h2>
+  </div>
+  <div class="row">
+    <div class="c8 stack">
+      <div class="row rule" data-role="statement" data-cap="≤ 2 lines at 38 px, ≤ 90 chars; 3–4 statements"><p class="num ter c1">1</p><p class="c7">[Statement: a finding the deck supported, ≤&nbsp;2 lines, ≤&nbsp;90 characters]</p></div>
+      <div class="row rule" data-role="statement" data-cap="≤ 2 lines at 38 px, ≤ 90 chars; 3–4 statements"><p class="num ter c1">2</p><p class="c7">[Statement: a finding the deck supported, ≤&nbsp;2 lines, ≤&nbsp;90 characters]</p></div>
+      <div class="row rule" data-role="statement" data-cap="≤ 2 lines at 38 px, ≤ 90 chars; 3–4 statements"><p class="num ter c1">3</p><p class="c7">[Statement: a finding the deck supported, ≤&nbsp;2 lines, ≤&nbsp;90 characters]</p></div>
+    </div>
+    <div class="c4 panel stack" data-role="next steps" data-cap="≤ 3 steps of ≤ 2 lines, ≤ 50 chars each">
+      <p class="kicker">Next steps</p>
+      <ul class="dash">
+        <li class="s">[Next step: one action, ≤&nbsp;2 lines, ≤&nbsp;50 characters]</li>
+        <li class="s">[Next step: one action, ≤&nbsp;2 lines, ≤&nbsp;50 characters]</li>
+        <li class="s">[Next step: one action, ≤&nbsp;2 lines, ≤&nbsp;50 characters]</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">[Speaker notes, optional: the closing sentence, ≤&nbsp;60 words]</aside>
+</section>

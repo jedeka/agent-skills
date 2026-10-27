@@ -1,0 +1,23 @@
+<!--
+  02 section title (design spec §6).
+  Use: the transition into each major part of a deck with ≥ 3 parts; skip it for short decks
+    unless the user asks for section slides: then every part gets one, numbered in order.
+  Grid: .c2 section number + .c10 title, on a 2 px rule, centred vertically between the deck label
+    above and the contents line below.
+  Capacity (cover padding leaves 888 px): title ≤ 2 lines at 104 px (~25 characters per line in
+    .c10, so ≤ 40 characters); subtitle 1 line (≤ 65 characters); contents line ≤ 100 characters.
+    Flow ≈ 32 + 20 + 218 + 28 + 49 + 32 + gaps 80 = 459 of 888.
+  Defaults: the number is the section's ordinal (01, 02, ...) in tertiary gray, never an accent.
+-->
+<section class="section" data-nofooter>
+  <p class="kicker" data-role="deck label" data-cap="1 line, ≤ 30 chars">[Deck label or part name · ≤&nbsp;30 characters]</p>
+  <div class="row rule2" style="margin-top:auto">
+    <h1 class="section-title c2 ter" data-role="section number" data-cap="01, 02 … in tertiary gray">[02]</h1>
+    <div class="c10 stack">
+      <h1 class="section-title" data-role="section title" data-cap="≤ 2 lines at 104 px, ≤ 40 chars">[Section title, ≤&nbsp;2 lines, ≤&nbsp;40 characters]</h1>
+      <p class="lead" data-role="subtitle" data-cap="1 line, ≤ 65 chars">[Subtitle: the question this section answers, ≤&nbsp;65 characters]</p>
+    </div>
+  </div>
+  <p class="meta" style="margin-top:auto" data-role="contents line" data-cap="2–4 topics, ≤ 100 chars">[Contents: <span style="white-space:nowrap">2–4</span> slide topics separated by · , ≤&nbsp;100 characters]</p>
+  <aside class="notes">[Speaker notes, optional: why this part comes now, ≤&nbsp;40 words]</aside>
+</section>

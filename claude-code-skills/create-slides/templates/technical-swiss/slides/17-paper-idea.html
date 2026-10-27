@@ -1,0 +1,54 @@
+<!--
+  17 paper idea: slide 1 of a paper explainer (references/paper-explainer.md); 18 paper method follows it.
+  Use: one research paper's problem, idea and own figure, in a deck that explains papers two slides each.
+    scripts/explainer.py fills it from the paper's JSON. data-slot marks what it fills; data-fit marks
+    a region whose overflow it measures; data-lines is the most lines an element may take; data-box is
+    the largest figure size, which the figure is fitted into at its own aspect ratio (data-box-1: the
+    larger box used when the title, ≤ 40 characters, takes one line).
+  Grid: .c6 text (Problem, Idea) + .c6 figure, both on 2 px rules, between the heading and a takeaway
+    bar across all 12 columns. Without a figure the text column takes .c8.
+  Type: running text at the caption size, 28 px (the section sets --t-body to --t-cap): an explainer
+    is read rather than presented and needs the density; nothing is under 24 px. Takeaway 32 px semibold.
+  Capacity (measured; 864 px content height): title ≤ 2 lines at 60 px (≤ 110 characters). The columns
+    get 426 px under a two-line title, 495 px under a one-line one. Each block label costs 65 px and
+    the gap between blocks 24 px, so problem + idea hold ≈ 7 lines at 36 px (≈ 9 under a one-line
+    title), ~58 characters a line. Figure ≤ 860 x 314 px (860 x 383 under a one-line title), caption
+    ≤ 2 lines (≤ 120 characters); takeaway ≤ 2 lines (≤ 190 characters).
+    Flow = head 227 + 40 + columns 426 + 40 + takeaway 131 = 864.
+  Defaults: the paper's title verbatim; the short name is left out of the meta line when it repeats
+    the title; its own figure, cropped from the cited page, with that page; no authors, keys or dates
+    beyond the venue year on the face (the notes carry the full citation); blue only for links.
+-->
+<section id="p-key" style="--t-body:var(--t-cap)" data-slot="section">
+  <div class="head">
+    <div class="row" style="justify-content:space-between;align-items:baseline">
+      <p class="kicker" data-slot="eyebrow">[Section · tag · tag, ≤&nbsp;80 characters]</p>
+      <a class="meta blue" href="#contents" style="text-decoration:none;flex:none">Contents&nbsp;↑</a>
+    </div>
+    <h2 data-slot="title" data-lines="2" style="text-wrap:balance">[The paper's title, verbatim, ≤&nbsp;2 lines, ≤&nbsp;110 characters]</h2>
+    <p class="meta"><strong style="color:var(--ink)" data-slot="short">[Short name]</strong><span data-slot="short-sep"> · </span><span data-slot="cite">[Venue and year · arXiv id]</span></p>
+  </div>
+  <div class="row stretch" style="flex:1;min-height:0">
+    <div class="c6 stack" style="gap:24px" data-slot="text-col" data-fit="text column (problem, idea)">
+      <div class="head rule2">
+        <p class="kicker">Problem</p>
+        <p data-slot="problem">[Problem: what goes wrong without the paper, with a concrete case, ≤&nbsp;3 lines, ≤&nbsp;180 characters]</p>
+      </div>
+      <div class="head rule2">
+        <p class="kicker">Idea</p>
+        <ul class="dash" data-slot="idea">
+          <li>[Step of the idea: the mechanism in plain words, ≤&nbsp;2 lines, ≤&nbsp;110 characters]</li>
+          <li>[Step of the idea, ≤&nbsp;2 lines in all for the second and third]</li>
+        </ul>
+      </div>
+    </div>
+    <div class="c6 fig rule2" data-slot="figure" data-fit="figure column">
+      <img data-slot="figure-img" data-box="860x314" data-box-1="860x383" src="assets/placeholder-figure-16x9.png" alt="[The paper's own figure]" style="width:558px;height:314px;flex:none">
+      <p class="cap" data-lines="2"><span data-slot="caption">[Caption: what to look at in the figure, ≤&nbsp;2 lines, ≤&nbsp;120 characters]</span> <span class="mono" style="white-space:nowrap" data-slot="figure-page">p.[N]</span></p>
+    </div>
+  </div>
+  <div class="panel" style="border-left:6px solid var(--ink)">
+    <p class="s" data-lines="2"><strong data-slot="takeaway">[Takeaway: the one sentence to remember about the paper, ≤&nbsp;2 lines, ≤&nbsp;190 characters]</strong></p>
+  </div>
+  <aside class="notes" data-slot="notes">[Speaker notes: the full citation, the source PDF and the figure's page and box]</aside>
+</section>

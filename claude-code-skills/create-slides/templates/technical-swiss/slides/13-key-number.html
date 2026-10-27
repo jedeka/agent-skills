@@ -1,0 +1,38 @@
+<!--
+  13 key number (design spec §17).
+  Use: one measured number that carries the slide's message; never an arbitrary statistic.
+  Grid: .c7 number and metric + .c5 comparison and meaning, centred vertically under the title.
+  Capacity (864 px content height): number ≤ 6 characters at 240 px (~150 px per digit) with the
+    unit in the metric line; metric 1 line (≤ 45 characters); comparison value + 1-line label;
+    meaning ≤ 3 lines at 38 px (~34 characters per line, ≤ 100 characters).
+    Flow ≈ head 113 + 40 + max(301, 380) = 533 of 864.
+  Defaults: the number in ink; colour it only by meaning (green meets target, red below target,
+    blue for the focal method's value). Report the interval or n in the setting line. The
+    comparison value is grey (.num sec) when it is a plain baseline; when it carries a meaning of
+    its own, such as also falling below target, give it that colour (.num red) and say so in words
+    in its label or the meaning line.
+  Binding: in a setting line of items joined by ·, bind each dot to the item before it
+    (18 scenes&nbsp;· 20 splits), so a wrapped line never starts with a dot.
+-->
+<section>
+  <div class="head" data-role="heading" data-cap="kicker ≤ 30 chars · title 1 line, ≤ 50 chars">
+    <p class="kicker">[Section label · ≤&nbsp;30 characters]</p>
+    <h2>[Slide title: what the number means, ≤&nbsp;50 characters]</h2>
+  </div>
+  <div class="row" style="margin-top:auto;margin-bottom:auto;align-items:flex-end">
+    <div class="c7 head" data-role="key number" data-cap="≤ 6 characters at 240 px; metric line ≤ 45 chars">
+      <p class="big">[00.0]</p>
+      <p class="lead">[Metric and unit, one line, ≤&nbsp;45 characters]</p>
+    </div>
+    <div class="c5 stack">
+      <div class="head rule" data-role="comparison" data-cap="a value at 64 px above a 1-line label">
+        <p class="kicker">Compared with</p>
+        <p class="num sec">[00.0]</p>
+        <p class="cap">[Baseline or target: same metric, same setting]</p>
+      </div>
+      <p data-role="meaning" data-cap="≤ 3 lines, ≤ 100 chars">[Meaning: why this number matters, ≤&nbsp;3 lines, ≤&nbsp;100 characters]</p>
+      <p class="meta" data-role="setting" data-cap="n, data, interval">[Setting: n, data, interval]</p>
+    </div>
+  </div>
+  <aside class="notes">[Speaker notes, optional: ≤&nbsp;60 words]</aside>
+</section>

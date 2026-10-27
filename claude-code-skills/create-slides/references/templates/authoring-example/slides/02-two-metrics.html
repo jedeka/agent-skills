@@ -1,0 +1,44 @@
+<!--
+  two metrics (worked example in references/template-authoring.md; not yet one of the theme's templates).
+  Use: two measured numbers that together make one claim (one rose while the other held), each
+    read against its own baseline. For one number use 13-key-number; for three or more, 10-table.
+  Grid: two .c6 metric columns, each with the number above its text (never beside it), then one
+    setting line on a rule pinned to the end of the content area.
+  Capacity (864 px content height): metric label 1 line (≤ 30 characters); number ≤ 5 characters
+    at 240 px with the unit in the metric line ("25.6%" measures 737 px and "−100%" 827 px in the
+    860 px column; 6 characters such as "100.0%" measure 885 px and overflow); metric line 1 line
+    at 38 px (≤ 40 characters); comparison 1 line at 32 px (≤ 45 characters); meaning ≤ 2 lines
+    at 38 px (≤ 80 characters); setting 1 line at 24 px (≤ 120 characters).
+    Flow ≈ head 112 + 40 + metric 562 + 40 + setting 53 = 807 of 864; the setting line is pinned to
+    the bottom.
+  Defaults: both numbers in ink unless a colour meaning applies (red below target, green meets it,
+    blue the focal method); the comparison uses the same metric and the same population.
+-->
+<section>
+  <div class="head" data-role="heading" data-cap="kicker ≤ 30 chars · title 1 line, ≤ 50 chars">
+    <p class="kicker">[Section label · ≤&nbsp;30 characters]</p>
+    <h2>[Slide title: the claim both numbers make, ≤&nbsp;50 characters]</h2>
+  </div>
+  <div class="row">
+    <div class="c6 stack">
+      <div class="head" data-role="metric" data-cap="label ≤ 30 chars; number ≤ 5 characters at 240 px; metric line ≤ 40 chars">
+        <p class="kicker">[Metric A · ≤&nbsp;30 characters]</p>
+        <p class="big">[0.0]</p>
+        <p class="lead">[Metric and unit, one line, ≤&nbsp;40 characters]</p>
+      </div>
+      <p class="s rule" data-role="comparison" data-cap="1 line at 32 px, ≤ 45 chars">[Baseline: value, same metric, ≤&nbsp;45 characters]</p>
+      <p data-role="meaning" data-cap="≤ 2 lines, ≤ 80 chars">[Meaning: what this number shows, ≤&nbsp;2 lines, ≤&nbsp;80 characters]</p>
+    </div>
+    <div class="c6 stack">
+      <div class="head" data-role="metric" data-cap="label ≤ 30 chars; number ≤ 5 characters at 240 px; metric line ≤ 40 chars">
+        <p class="kicker">[Metric B · ≤&nbsp;30 characters]</p>
+        <p class="big">[0.0]</p>
+        <p class="lead">[Metric and unit, one line, ≤&nbsp;40 characters]</p>
+      </div>
+      <p class="s rule" data-role="comparison" data-cap="1 line at 32 px, ≤ 45 chars">[Baseline: value, same metric, ≤&nbsp;45 characters]</p>
+      <p data-role="meaning" data-cap="≤ 2 lines, ≤ 80 chars">[Meaning: what this number shows, ≤&nbsp;2 lines, ≤&nbsp;80 characters]</p>
+    </div>
+  </div>
+  <p class="meta rule" style="margin-top:auto" data-role="setting" data-cap="1 line at 24 px, ≤ 120 chars">[Setting: data, n, interval, ≤&nbsp;120 characters]</p>
+  <aside class="notes">[Speaker notes, optional: the source of both numbers, ≤&nbsp;80 words]</aside>
+</section>

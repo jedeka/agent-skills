@@ -1,0 +1,16 @@
+{
+ "title": "Conformal guarantees for robots that ask",
+ "label": "Paper explainer",
+ "subtitle": "Two papers read for a robot that must decide whether to grasp or to ask first.",
+ "sections": [
+  {"name": "Robot planners", "note": "A language-model planner that asks for help when its choice is uncertain."},
+  {"name": "Foundations", "note": "The conformal theory behind such a gate, for losses beyond a missed label."}
+ ],
+ "glossary": [
+  ["Conformal prediction", "turns a model's scores into a set that holds the right answer with a chosen probability"],
+  ["Calibration set", "labelled examples, kept out of training, that fix the threshold"],
+  ["Coverage", "the chance that the set holds the true answer"],
+  ["Risk", "the expected value of a loss, such as the fraction of a tumour missed"]
+ ],
+ "callout_label": "For us"
+}

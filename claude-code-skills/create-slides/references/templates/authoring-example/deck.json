@@ -1,0 +1,9 @@
+{
+  "title": "Two-metric template, worked example",
+  "theme": "technical-swiss",
+  "slides": [
+    "01-draft-beside",
+    "02-two-metrics",
+    "03-two-metrics-full"
+  ]
+}
